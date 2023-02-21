@@ -14,7 +14,7 @@ public class JavaApplicationMain {
 		     (NullPointerException발생)  
 		**************************************/
 		ProductService productService1 = new ProductServiceImpl(); //의존성 객체를 주입
-		//System.out.println(productService1.productList());
+		//System.out.println(productService1.productList()); null발생함.
 		
 		
 		/********************case2**************************
