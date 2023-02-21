@@ -32,9 +32,9 @@ public class ReflectionAnnotationGuestServiceMain {
 		for (Class clazz : guestPackageClasses) {
 			Annotation[] annotations = clazz.getAnnotations();
 			for (Annotation annotation : annotations) {
-				if (annotation instanceof MyComponent) {
+				if (annotation instanceof Component) {
 					System.out.println(clazz.getSimpleName() + ":" + annotation);
-					MyComponent myComponent = (MyComponent) annotation;
+					Component myComponent = (Component) annotation;
 					String componentName = myComponent.value();
 					Object newInstance = clazz.newInstance();
 					applicationContext.put(componentName, newInstance);
@@ -52,8 +52,8 @@ public class ReflectionAnnotationGuestServiceMain {
 			for (Method method : methods) {
 				Annotation[] annotations = method.getAnnotations();
 				for (Annotation annotation : annotations) {
-					if (annotation instanceof MyAutoWire) {
-						MyAutoWire myAutoWire = (MyAutoWire) annotation;
+					if (annotation instanceof AutoWire) {
+						AutoWire myAutoWire = (AutoWire) annotation;
 						System.out.println(myAutoWire);
 						System.out.println(beanClass.getSimpleName() + ":" + method);
 						String componentId = myAutoWire.value();

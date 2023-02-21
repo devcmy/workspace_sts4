@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 /*
  * Connection을 생성하고,해지하는역할을하는 클래스
  */
-@MyComponent(value = "dataSource")
+@Component(value = "dataSource")
 public class DataSource {
 	public DataSource() {
 		
