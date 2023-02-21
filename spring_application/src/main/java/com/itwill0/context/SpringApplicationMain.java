@@ -21,7 +21,8 @@ public class SpringApplicationMain {
 		System.out.println("---------------------ApplicationContext 생성끝-----------------------------------------------------");
 		
 		/*
-		 * 2. Spring Container 객체
+		 * 2. Spring Container 객체[ApplicationContext객체]로 부터
+		 * 	productService 아이디를 가진 객체 참조 얻기.
 		 */
 		
 		ProductService productService = (ProductService)applicationContext.getBean("productService");
