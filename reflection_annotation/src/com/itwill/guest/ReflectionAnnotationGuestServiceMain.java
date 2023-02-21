@@ -41,7 +41,9 @@ public class ReflectionAnnotationGuestServiceMain {
 				}
 			}
 		}
-
+		System.out.println(applicationContext);
+		
+		
 		System.out.println("--------@MyAutoWire setter method호출--------------");
 		Iterator<String> beanIdIterator= applicationContext.keySet().iterator();
 		while (beanIdIterator.hasNext()) {
