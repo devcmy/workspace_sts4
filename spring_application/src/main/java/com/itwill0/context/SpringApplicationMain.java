@@ -28,6 +28,10 @@ public class SpringApplicationMain {
 		ProductService productService = (ProductService)applicationContext.getBean("productService"); //object타입으로 꺼내져서, 캐스팅함.
 		System.out.println(productService.productList());
 		System.out.println(productService.productDetail(321));
+		System.out.println("-----------------singleton객체(객체가 한번 생성하면 호출될때 같은 객체 반환함----------------");
+		System.out.println(applicationContext.getBean("productService"));
+		System.out.println(applicationContext.getBean("productService"));
+		System.out.println(applicationContext.getBean("productService")); //Container은 기본적으로 같은 객체가 반환됨.(참조변수가 동일)
 		
 		
 	}
