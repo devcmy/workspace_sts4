@@ -26,9 +26,15 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	<bean id="productDao" class="com.itwill.product.ProductDaoImpl"/>
-	<!-- 생성자 주입 -->
+	<!-- 생성자 주입 방식
 	<bean id="productService" class="com.itwill.product.ProductServiceImpl">
-		<constructor-arg ref="productDao"/> <!-- 기본생성자가 아닌 한개짜리 주입 /dao 주입!(넣어줌)-->
+		<constructor-arg ref="productDao"/>  기본생성자가 아닌 한개짜리 주입 /dao 주입!(넣어줌)(JavaApplication.case2)
+	</bean>	
+-->
+
+	<!-- Setter 메소드 주입 -->
+	<bean id="productService" class="com.itwill.product.ProductServiceImpl">
+		<property name="productDao" ref="productDao"></property> <!-- name : setProductDao(productDao)가 호출 ref: productDao를 주입!(넣어줌)(JavaApplication.case3) -->
 	</bean>	
 
 </beans>

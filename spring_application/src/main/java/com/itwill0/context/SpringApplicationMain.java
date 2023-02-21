@@ -25,7 +25,7 @@ public class SpringApplicationMain {
 		 * 	productService 아이디를 가진 객체 참조 얻기.
 		 */
 		
-		ProductService productService = (ProductService)applicationContext.getBean("productService");
+		ProductService productService = (ProductService)applicationContext.getBean("productService"); //object타입으로 꺼내져서, 캐스팅함.
 		System.out.println(productService.productList());
 		System.out.println(productService.productDetail(321));
 		
