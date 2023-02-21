@@ -3,6 +3,8 @@ package com.itwill0.context;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.itwill.product.ProductService;
+
 public class SpringApplicationMain {
 
 	public static void main(String[] args) {
@@ -12,13 +14,19 @@ public class SpringApplicationMain {
 		 */
 		
 		/*
-		 * 1. Spring Bean 설정파일을 읽어서 SpringContainer 객체생성
+		 * 1. Spring Bean 설정파일을 읽어서 SpringContainer 객체생성 -> 1)생성자를 통해 주입 or 2)setter injection 주입해야 가능.
 		 */
 		System.out.println("---------------------ApplicationContext 생성시작-----------------------------------------------------");
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("com/itwill0/context/0.application_context.xml");
 		System.out.println("---------------------ApplicationContext 생성끝-----------------------------------------------------");
 		
+		/*
+		 * 2. Spring Container 객체
+		 */
 		
+		ProductService productService = (ProductService)applicationContext.getBean("productService");
+		System.out.println(productService.productList());
+		System.out.println(productService.productDetail(321));
 		
 		
 	}

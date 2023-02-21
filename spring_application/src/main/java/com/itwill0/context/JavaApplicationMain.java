@@ -20,7 +20,7 @@ public class JavaApplicationMain {
 		/********************case2**************************
 		 1.ProductDaoImp 객체를 생성한다
 		 2.ProductServiceImpl에 생성자에 ProductDaoImp 객체의 주소를 넣어준다(주입)
-		  (생성자를 통한 Injection)
+		  (생성자를 통한 Injection) //생성자주입//
 		 3.ProductService객체메쏘드를 호출한다. 
 		 ****************************************************/
 		ProductDao productDao2 = new ProductDaoImpl(); //객체를 만들고
@@ -34,7 +34,7 @@ public class JavaApplicationMain {
 		1. ProductDaoImple객체생성
 		2. ProductServiceImpl객체생성
 		3. ProductServiceImpl.setter 메쏘드를 사용해 ProductDaoImple객체 넣어준다
-		  (setter 메쏘드 Injection)
+		  (setter 메쏘드 Injection) //setterInjection//
 	 	4.ProductService객체메쏘드를 호출한다. 	  
 	   */
 		ProductDao productDao3 = new ProductDaoImpl();

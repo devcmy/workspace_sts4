@@ -25,6 +25,10 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
-	
+	<bean id="productDao" class="com.itwill.product.ProductDaoImpl"/>
+	<!-- 생성자 주입 -->
+	<bean id="productService" class="com.itwill.product.ProductServiceImpl">
+		<constructor-arg ref="productDao"/> <!-- 기본생성자가 아닌 한개짜리 주입 /dao 주입!(넣어줌)-->
+	</bean>	
 
 </beans>
