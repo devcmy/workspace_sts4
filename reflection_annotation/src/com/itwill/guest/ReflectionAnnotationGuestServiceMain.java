@@ -19,7 +19,6 @@ public class ReflectionAnnotationGuestServiceMain {
 		HashMap applicationContext = new HashMap();
 
 		
-		
 		Class guestPackageClass0 = DataSource.class;
 		Class guestPackageClass1 = GuestDaoImpl.class;
 		Class guestPackageClass2 = GuestServiceImpl.class;
