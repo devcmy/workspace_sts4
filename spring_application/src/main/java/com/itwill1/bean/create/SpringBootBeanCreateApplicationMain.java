@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.itwill.guest.GuestDao;
 import com.itwill.guest.GuestService;
+import com.itwill.user.User;
 import com.itwill.user.UserDao;
 import com.itwill.user.UserService;
 
@@ -56,8 +57,10 @@ public class SpringBootBeanCreateApplicationMain {
 		System.out.println(applicationContext.getBean(GuestService.class));
 		
 		System.out.println("------bean의 scope[prototype]-----------"); //요청할때 마다 새로운 객체 만들어줌
-		
-		
+		System.out.println(applicationContext.getBean(User.class)); //생성된게 다 다름
+		System.out.println(applicationContext.getBean(User.class)); //생성된게 다 다름
+		System.out.println(applicationContext.getBean(User.class)); //생성된게 다 다름
+         		
 		
 	}
 
