@@ -48,6 +48,17 @@ public class SpringBootBeanCreateApplicationMain {
 		System.out.println(userService2);
 		System.out.println(guestDao2);
 		System.out.println(guestSerivce2);
+		
+		System.out.println("------bean의 scope[singleton]-----------"); //한개 만들어서 주기
+		System.out.println(applicationContext.getBean(GuestDao.class));
+		System.out.println(applicationContext.getBean(GuestDao.class));
+		System.out.println(applicationContext.getBean(GuestService.class));
+		System.out.println(applicationContext.getBean(GuestService.class));
+		
+		System.out.println("------bean의 scope[prototype]-----------"); //요청할때 마다 새로운 객체 만들어줌
+		
+		
+		
 	}
 
 }
