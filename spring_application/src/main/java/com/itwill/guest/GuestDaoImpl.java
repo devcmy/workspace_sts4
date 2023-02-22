@@ -8,6 +8,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
+
+@Repository
 public class GuestDaoImpl implements GuestDao {
 	
 	public GuestDaoImpl() {
