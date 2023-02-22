@@ -18,6 +18,7 @@ public class SpringBootDataSourceApplicationMain {
 		DataSource dataSource = applicationContext.getBean(DataSource.class);
 		System.out.println("1.DataSource:"+dataSource);
 		System.out.println("2.Connection:"+dataSource.getConnection());
+		//datasource는 applicationcontext뜰때 이미 등록됨.
 	}
 
 }
