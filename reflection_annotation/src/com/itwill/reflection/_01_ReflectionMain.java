@@ -10,33 +10,33 @@ import com.itwill.guest.Guest;
 public class _01_ReflectionMain {
 	public static void main(String[] args) throws Exception {
 		String className = "com.itwill.guest.GuestServiceImpl";
-		Class clazz = Class.forName(className);
+		Class clazz = Class.forName(className); //클래스 load
 		//Class clazz=Guest.class;
 		
 		
 		
 		
-		Method[] public_methods = clazz.getMethods();
-		Method[] all_methods = clazz.getDeclaredMethods();
-		Field[] public_fields = clazz.getFields();
-		Field[] all_fields = clazz.getDeclaredFields();
-		Constructor[] public_constructors = clazz.getConstructors();
-		Constructor[] all_constructors = clazz.getDeclaredConstructors();
+		Method[] public_methods = clazz.getMethods(); //public method 전체 요청
+		Method[] all_methods = clazz.getDeclaredMethods(); //모든 메소드 가져오기
+		Field[] public_fields = clazz.getFields(); //public field가져오기
+		Field[] all_fields = clazz.getDeclaredFields(); //모든 필드 가져오기
+		Constructor[] public_constructors = clazz.getConstructors(); //constructor public만
+		Constructor[] all_constructors = clazz.getDeclaredConstructors(); //constructor 전체
 
 		System.out.println("################### all_methods #################");
 		for (int i = 0; i < all_methods.length; i++) {
 			System.out.println("<<< " + public_methods[i].toString() + " >>>");
 			Method m = all_methods[i];
-			System.out.println("메쏘드        이름 = " + m.getName());
-			System.out.println("메쏘드선언된클래스 = " + m.getDeclaringClass());
-			Class parameterClazzArray[] = m.getParameterTypes();
+			System.out.println("메쏘드        이름 = " + m.getName()); //이름가져오기
+			System.out.println("메쏘드선언된클래스 = " + m.getDeclaringClass()); //해당메소드를 선언한 클래스 받아오기
+			Class parameterClazzArray[] = m.getParameterTypes(); //타입정보 가져오기
 			for (int j = 0; j < parameterClazzArray.length; j++)
 				System.out.println("메쏘드    파라메타" + j + "= " + parameterClazzArray[j]);
 			System.out.println("메쏘드    반환타입 = " + m.getReturnType());
 			System.out.println("-----------------------------");
 
 		}
-		System.out.println("################### all_fields #################");
+		System.out.println("################### all_fields #################"); //필드 정보
 		for (int i = 0; i < all_fields.length; i++) {
 			System.out.println("<<< " + all_fields[i].toString() + " >>>");
 			Field fld = all_fields[i];

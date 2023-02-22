@@ -7,7 +7,7 @@ import com.itwill.product.ProductDao;
 import com.itwill.product.ProductService;
 
 public class _05_ReflectionProductServiceMain {
-
+	//annotation 없이 서비스를 주세요 호출해볼께요~(호출하는법)
 	public static void main(String[] args) throws Exception{
 		System.out.println("--------------------Spring설정파일(XML)-------------------------");
 		String daoBeanName="productDao";

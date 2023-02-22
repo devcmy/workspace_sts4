@@ -7,9 +7,9 @@ import com.itwill.guest.GuestService;
 import com.itwill.product.ProductDao;
 import com.itwill.product.ProductServiceImpl;
 
-public class _04_ReflectionGuestServiceMain {
+public class _04_ReflectionGuestServiceMain { //설정파일 통해 읽는법
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception{ 
 		System.out.println("--------------------Spring설정파일(XML)-------------------------");
 		String dataSourceBeanName="dataSource";
 		String daoBeanName="guestDao";
@@ -19,8 +19,8 @@ public class _04_ReflectionGuestServiceMain {
 		String daoClassName="com.itwill.guest.GuestDaoImpl";
 		String serviceClassName="com.itwill.guest.GuestServiceImpl";
 		
-		String daoPropertyName="dataSource";
-		String servicePropertyName="guestDao";
+		String daoPropertyName="dataSource"; //setDataSource 찾는목표
+		String servicePropertyName="guestDao"; //setGuestDao 찾는목표
 		/*
 		 * 1.Spring Bean의 설정파일을 읽어서 Spring Container객체[ApplicationContext객체]생성
 		 */
@@ -33,11 +33,11 @@ public class _04_ReflectionGuestServiceMain {
 		Object dataSourceInstnace=dataSourceClazz.newInstance();
 		Object daoInstnace=daoClazz.newInstance();
 		Object serviceInstance=serviceClazz.newInstance();
-		applicationContext.put(dataSourceBeanName, dataSourceInstnace);
+		applicationContext.put(dataSourceBeanName, dataSourceInstnace); //beanfactory에 등록
 		applicationContext.put(daoBeanName, daoInstnace);
 		applicationContext.put(serviceBeanName, serviceInstance);
 		
-		System.out.println("2.Spring Container Dao객체 setter 메쏘드 호출");
+		System.out.println("2.Spring Container Dao객체 중에 setter 메쏘드 호출");
 		Method[] methods = daoClazz.getMethods();
 		for (Method method : methods) {
 			System.out.println("\tA. >>>>>>>> 모든 method 검사: " + method);
@@ -72,7 +72,7 @@ public class _04_ReflectionGuestServiceMain {
 		
 		System.out.println("가. Spring Container객체[ApplicationContext객체]로부터 "+serviceBeanName+"란 빈이름의 객체참조얻기");
 		GuestService guestService=(GuestService)applicationContext.get("guestService");
-		System.out.println(guestService.selectAll());
+		System.out.println(guestService.selectAll()); //bean참조를 통해 selectAll()하면 제대로 나오는가?
 	}
 	
 

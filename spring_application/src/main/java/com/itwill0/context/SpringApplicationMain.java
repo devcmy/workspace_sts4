@@ -8,6 +8,7 @@ import com.itwill.product.ProductService;
 public class SpringApplicationMain {
 
 	public static void main(String[] args) {
+		//서비스를 주세요 호출해볼꼐
 		/*
 		 * Spring Container 객체생성(얘네들이 대신 객체생성(우리가직접작성x)
 		 *  - ApplicationContext[BeanFactory]객체생성

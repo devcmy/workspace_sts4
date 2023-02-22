@@ -3,7 +3,7 @@ package com.itwill.reflection;
 import java.lang.reflect.Method;
 
 public class _03_ReflectionGetterSetterMethodInvocationMain {
-
+					//reflection으로 getter,setter를 invoke하겟다. -> @annotation이 없이 하는 작업
 	public static void main(String[] args) throws Exception {
 		
 		String className = "com.itwill.guest.Guest";
