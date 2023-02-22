@@ -7,11 +7,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.itwill.guest.GuestService;
+import com.itwill.order.OrderService;
 import com.itwill.user.UserService;
 
 
 @SpringBootApplication
-@ComponentScan({"com.itwill.guest","com.itwill.user"})
+@ComponentScan({"com.itwill.guest","com.itwill.user","com.itwill.order"})
+
 public class SpringBootBeanDependencyInjectionMain {
 
 	public static void main(String[] args) throws Exception {
@@ -32,7 +34,10 @@ public class SpringBootBeanDependencyInjectionMain {
 		System.out.println("------Setter      Injection(생성자 주입)----------");
 		UserService userService = (UserService)applicationContext.getBean(UserService.class);
 		userService.create(null);
+		
 		System.out.println("------Field      Injection(생성자 주입)----------");
+		OrderService orderService = (OrderService)applicationContext.getBean(OrderService.class);
+		System.out.println(orderService.list()); //tostring lombok이 구현해줌 //injection이 null.pointer.exception 발생됨
 		
 		
 		
