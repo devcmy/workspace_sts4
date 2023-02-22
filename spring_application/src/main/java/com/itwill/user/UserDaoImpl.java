@@ -2,7 +2,9 @@ package com.itwill.user;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 	
 
