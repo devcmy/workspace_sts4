@@ -2,6 +2,7 @@ package com.itwill.guest;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 @Service(value = "guestService")
@@ -13,6 +14,13 @@ public class GuestServiceImpl implements GuestService {
 	public GuestServiceImpl() {
 		System.out.println("1.#### GuestServiceImpl() 기본생성자");
 	}
+	
+	@Autowired  //우선시됨.
+	public GuestServiceImpl(GuestDao guestDao) {
+		System.out.println("1.#### GuestServiceImpl(GuestDao guestDao) 기본생성자");
+		this.guestDao = guestDao;
+	}
+	
 	
 	@Override
 	public List<Guest> selectAll()throws Exception{

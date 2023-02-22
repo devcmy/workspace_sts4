@@ -18,7 +18,8 @@ public class SpringBootBeanDependencyInjectionMain {
 		System.out.println("-----Spring Container 초기화 끝[ApplicationContext객체생성 끝]-------");
 		//Injection없이 작업
 		GuestService guestService = applicationContext.getBean(GuestService.class);
-		guestService.selectAll();
+		
+		//guestService.selectAll();
 		System.out.println("------Constructor Injection(생성자 주입)----------");
 		
 		System.out.println("------Setter      Injection(생성자 주입)----------");
