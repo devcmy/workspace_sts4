@@ -3,7 +3,7 @@ package com.itwill.guest;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-@Service
+@Service(value = "guestService")
 public class GuestServiceImpl implements GuestService {
 	
 	public GuestServiceImpl() {

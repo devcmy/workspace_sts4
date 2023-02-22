@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 
 
-@Repository
+@Repository(value = "guestDao")
 public class GuestDaoImpl implements GuestDao {
 	
 	public GuestDaoImpl() {

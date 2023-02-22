@@ -3,7 +3,7 @@ package com.itwill.user;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-@Service
+@Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
 	public UserServiceImpl() {
