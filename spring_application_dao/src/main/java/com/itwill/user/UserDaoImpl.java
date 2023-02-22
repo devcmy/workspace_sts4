@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	 * - DataSource객체 : Connection을 반환해주는객체
 	 * - 톰캣에서제공하는 DataSource 객체사용
 	 */
-	@Autowired
+	
 	private DataSource dataSource;
 
 	public UserDaoImpl() throws Exception {
