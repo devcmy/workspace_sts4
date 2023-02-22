@@ -2,8 +2,12 @@ package com.itwill.user;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	private UserDao userDao; //의존성
@@ -13,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 	
-	
+	@Qualifier(value="userDao")
 	@Autowired
 	public void setUserDao(UserDao userDao) {
 		System.out.println("#### UserServiceImpl.setUserDao(UserDao userDao) : 메쏘드호출");
