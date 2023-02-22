@@ -21,10 +21,9 @@ GUEST_HOMEPAGE          VARCHAR2(50)
 GUEST_TITLE    NOT NULL VARCHAR2(100)  
 GUEST_CONTENT  NOT NULL VARCHAR2(4000) 
 */
-@Repository
+
 public class GuestDaoImpl implements GuestDao {
-	@Autowired
-	@Qualifier("apacheDataSource")
+
 	private DataSource dataSource;
 	
 	public GuestDaoImpl() {
