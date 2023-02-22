@@ -2,21 +2,30 @@ package com.itwill.user;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-@Service(value = "userService")
+@Service("userService")
 public class UserServiceImpl implements UserService {
-
+	private UserDao userDao; //의존성
+	
 	public UserServiceImpl() {
 		System.out.println("#### UserServiceImpl() : 디폴트생성자호출");
 
 	}
-
 	
+	
+	@Autowired
+	public void setUserDao(UserDao userDao) {
+		System.out.println("#### UserServiceImpl.setUserDao(UserDao userDao) : 메쏘드호출");
+		this.userDao = userDao;
+	}
+
+
 
 	public int create(User user) throws Exception {
-
+		userDao.create(user);
 		System.out.println("#### UserServiceImpl : create() 호출");
-
+		
 		return 0;
 	}
 
