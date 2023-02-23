@@ -3,6 +3,7 @@ package com.itwill.guest.dao.jdbctemplate;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -79,6 +80,20 @@ public class SpringBootJdbcTemplateMain {
 		String selectStringListSql = "select guest_name from guest";
 		List<String> guest_nameList = jdbcTemplate.queryForList(selectStringListSql,String.class);
 		System.out.println("--> queryForList[List<String]"+guest_nameList); // 한개값밖에 안된다고
+		
+		/***********************************************************************************************
+		 * SELECT --> queryForMap 반환타입[List<Map<String,Object>] //value는 모름, 알아서 mapping하기 때문에 object라고씀 (map1개 반환)
+		 ***********************************************************************************************/
+		String SelectMapSql="select * from guest where guest_no=?"; //map을담아 1개의 객체로 반환
+		Map rowMap = jdbcTemplate.queryForMap(SelectMapSql,new Object[] {264},new int[] {Types.INTEGER});
+		System.out.println("-->queryForMap 반환타입[Map<String,Object>]"+rowMap);
+
+		String SelectMapListSql="select * from guest"; //map 여러개를 list에 담음
+		List rowMapList = jdbcTemplate.queryForList(SelectMapListSql);
+		System.out.println("-->queryForList 반환타입[List<Map<String,Object>>]"+rowMapList);
+		 
+		
+		
 		
 		
 		
