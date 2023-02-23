@@ -16,16 +16,16 @@ public class GuestDaoImpl implements GuestDao {
 	//@Autowired
 	private DataSource dataSource;      
 	
-	public GuestDaoImpl() {
+	public GuestDaoImpl() { //field injection
 		System.out.println("2.#### GuestDaoImpl() 기본생성자호출");
 	}
 	@Autowired
-	public GuestDaoImpl(DataSource dataSource) {
+	public GuestDaoImpl(DataSource dataSource) { //constructor injection
 		System.out.println("2.#### GuestDaoImpl(DataSource dataSource) 생성자호출:"+this);
 		this.dataSource = dataSource;
 	}
 	//@Autowired
-	public void setDataSource(DataSource dataSource) {
+	public void setDataSource(DataSource dataSource) { //setter injection
 		System.out.println("3.#### GuestDaoImpl.setDataSource(DataSource dataSource) 메쏘드호출");
 		this.dataSource = dataSource;
 	}
