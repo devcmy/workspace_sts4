@@ -7,10 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+
+
 @SpringBootTest
 class GuestDaoImplJdbcTemplateTest {
 	@Autowired
 	GuestDao guestDao;
+	
+	@Disabled
 	@Test
 	void testSelectAll() throws Exception{
 		assertNotNull(guestDao.selectAll());
@@ -20,23 +24,32 @@ class GuestDaoImplJdbcTemplateTest {
 	}
 	@Disabled
 	@Test
-	void testSelectByNo() {
-		fail("Not yet implemented");
+	void testSelectByNo() throws Exception {
+		Guest guest = guestDao.selectByNo(466);
+		assertNotNull(guest);
+		System.out.println(guest);
 	}
 	@Disabled
 	@Test
-	void testInsertGuest() {
-		fail("Not yet implemented");
+	void testInsertGuest() throws Exception {
+		Guest insertGuest = new Guest(0, "장세종",null,"test@gmail.com","test@test.com","제목","내용");
+		assertEquals(guestDao.insertGuest(insertGuest), 1);
 	}
 	@Disabled
 	@Test
-	void testUpdateGuest() {
-		fail("Not yet implemented");
+	void testUpdateGuest() throws Exception {
+		Guest updateGuest = new Guest(466, "박세종",null,"1","1","제목","내용");
+		int updateRowCount = guestDao.updateGuest(updateGuest);
+		if (updateRowCount != 1) {
+			fail("update 실패");
+		}
 	}
-	@Disabled
+	
 	@Test
-	void testDeleteGuest() {
-		fail("Not yet implemented");
+	void testDeleteGuest() throws Exception {
+		int rowCount = guestDao.deleteGuest(466);
+		assertEquals(rowCount, 1);
+		System.out.println("삭제가되었니?"+rowCount);
 	}
 
 }
