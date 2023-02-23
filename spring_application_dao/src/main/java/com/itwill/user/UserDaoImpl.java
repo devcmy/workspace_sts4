@@ -14,23 +14,34 @@ import org.springframework.stereotype.Repository;
  사용자관리에서 데이타베이스와의 작업을 전담하는 클래스
  USERINFO 테이블에 사용자를 추가,삭제,검색,수정등의 작업을한다.
  */
-
+@Repository
 public class UserDaoImpl implements UserDao {
 	/*
 	 * - DataSource객체 : Connection을 반환해주는객체
-	 * - 톰캣에서제공하는 DataSource 객체사용
+	 * - Spring Boot Project의 class Path에서 제공하는 DataSource구현객체 사용
 	 */
 	
-	private DataSource dataSource;
+	// Take 1 
+	@Autowired
+	private DataSource dataSource; // datasource 설정 -> application.properties
 
 	public UserDaoImpl() throws Exception {
 		System.out.println("2.#### UserDaoImpl() 기본생성자호출");
 	}
+	
+	
+	
+	// Take 2
 	public UserDaoImpl(DataSource dataSource) {
 		System.out.println("2.#### UserDaoImpl(DataSource dataSource) 생성자호출");
 		this.dataSource = dataSource;
 	}
 	
+	
+	
+	
+	
+	// Take 3
 	public void setDataSource(DataSource dataSource) {
 		System.out.println("3.#### UserDaoImpl.setDataSource(DataSource dataSource) 메쏘드호출");
 		this.dataSource = dataSource;

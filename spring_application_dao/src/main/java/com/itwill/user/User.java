@@ -1,27 +1,27 @@
 package com.itwill.user;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /*
  *  사용자관리를 위하여 필요한 도메인클래스(VO,DTO)
  *  USERINFO 테이블의 각컬럼에해당하는 멤버를 가지고있다
  */
 
+@Data //getter setter
+@NoArgsConstructor //기본생성자
+@AllArgsConstructor //전체
+@ToString //to String 구현
 public class User {
-	/*
-	 * =================================== 
-	 * 이름 		널? 		유형
-	 * =================================== 
-	 * USERID 	NOT NULL VARCHAR2(100) 
-	 * PASSWORD	NOT NULL VARCHAR2(100) 
-	 * NAME 	NOT NULL VARCHAR2(200) 
-	 * EMAIL 			 VARCHAR2(300)
-	 * ===================================
-	 */
+
 	
 	private String userId;
 	private String password;
 	private String name;
 	private String email;
-	
+	/*
 	public User() {
 		System.out.println("1.#### User()기본생성자");
 	}
@@ -70,9 +70,11 @@ public class User {
 		System.out.println("2.#### User.setEmail(String email) 메쏘드호출");
 		this.email = email;
 	}
+	*/
 	/*
 	 *패쓰워드 일치여부 검사 
 	 */
+	
 	public boolean isMatchPassword(String password){
 		boolean isMatch=false;
 		if(this.password.equals(password)){
@@ -80,11 +82,12 @@ public class User {
 		}
 		return isMatch;
 	}
+	/*
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + "]";
 	}
-
+	*/
 }
 
 
