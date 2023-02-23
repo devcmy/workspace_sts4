@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.itwill.guest.dao.jdbc.Guest;
+import com.itwill.guest.dao.jdbc.GuestDao;
+
 @SpringBootApplication //상위에 @SpringBootApplication을 갖고 있는게있으면 찾고 끌어당겨서 테스트해줌 아니면, 지금처럼 @SpringBootApplication 이라고 기술할것.
 //붙이면 guestDaoIMPL만 테스트된다.
 @SpringBootTest
