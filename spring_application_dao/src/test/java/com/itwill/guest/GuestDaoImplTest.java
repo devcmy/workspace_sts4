@@ -15,7 +15,6 @@ class GuestDaoImplTest {
 	@Autowired
 	GuestDao guestDao;
 	
-	
 	@Test
 	void testSelectAll() throws Exception {
 
