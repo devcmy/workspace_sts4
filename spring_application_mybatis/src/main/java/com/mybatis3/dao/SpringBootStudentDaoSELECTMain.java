@@ -20,13 +20,18 @@ public class SpringBootStudentDaoSELECTMain {
 		StudentDao studentDao = (StudentDao)appicationContext.getBean(StudentDao.class);
 		System.out.println("---------findStudentById-----------------------------");
 		System.out.println(studentDao.findStudentById(1));
+		
 		System.out.println("---------findAllStudents-----------------------------");
 		System.out.println(studentDao.findAllStudents());
+		
 		System.out.println("---------findStudentNameById-------------------------");
+		
 		
 		System.out.println("---------findStudentNameList-------------------------");
 		
+		
 		System.out.println("---------findStudentByIdResultMap--------------------");
+		
 		
 		System.out.println("---------findAllStudentsResultMap--------------------");
 		

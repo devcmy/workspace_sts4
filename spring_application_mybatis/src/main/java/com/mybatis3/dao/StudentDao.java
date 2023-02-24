@@ -45,7 +45,7 @@ public class StudentDao {
 	}
 
 	public int insertStudentBySequence1(Student student) {
-		return 0;
+		return sqlSession.insert("insertStudentBySequence1",student);
 	}
 	
 	

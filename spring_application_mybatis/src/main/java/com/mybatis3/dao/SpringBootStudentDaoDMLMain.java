@@ -19,6 +19,9 @@ public class SpringBootStudentDaoDMLMain {
 		System.out.println("### row Count(영향받은 행의수) : " + studentDao.insertStudent(student1));
 		
 		System.out.println("---------insertStudentBySequence1--------------------");
+		Student student2 = new Student(0, "금요일", "friday@gmail.com", new Date());
+		System.out.println("### row Count(영향받은 행의수) : " + studentDao.insertStudentBySequence1(student2));
+		
 		
 		System.out.println("---------insertStudentBySequence2--------------------");
 		

@@ -26,6 +26,10 @@
 	 	values (#{studId},#{name},#{email},#{dob})  <!-- property가 #{} 안에 기술 -->
 	 </insert>
 	 
+	 <insert id="insertStudentBySequence1" parameterType="com.mybatis3.domain.Student">
+	 	insert into students(stud_id,name,email,dob) 
+	 	values (STUDENTS_STUD_ID_SEQ.nextval,#{name},#{email},#{dob})
+	 </insert>
 	 
 	
 </mapper>
