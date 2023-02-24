@@ -27,8 +27,19 @@
 	 </insert>
 	 
 	 <insert id="insertStudentBySequence1" parameterType="com.mybatis3.domain.Student">
+	 
 	 	insert into students(stud_id,name,email,dob) 
 	 	values (STUDENTS_STUD_ID_SEQ.nextval,#{name},#{email},#{dob})
+	 	
+	 </insert>
+	 
+	 <insert id="insertStudentBySequence2" parameterType="com.mybatis3.domain.Student">
+	 	<selectKey order="BEFORE" resultType="int" keyProperty="studId"> <!-- key값 얻어서 stud id보관 -->
+	 		select students_stud_id_seq.nextval from dual <!--  가상테이블 dual 이용 -->
+	 	</selectKey>
+	 	insert into students(stud_id,name,email,dob) 
+	 	values (#{studId},#{name},#{email},#{dob})
+	 	
 	 </insert>
 	 
 	

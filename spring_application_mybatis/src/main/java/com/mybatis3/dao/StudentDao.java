@@ -48,6 +48,16 @@ public class StudentDao {
 		return sqlSession.insert("insertStudentBySequence1",student);
 	}
 	
+	/*
+	 * sequence실행후 PK return
+	 */
+	public int insertStudentBySequence2(Student student) {
+		return sqlSession.insert("insertStudentBySequence2",student);
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -120,12 +130,7 @@ public class StudentDao {
 
 
 
-	/*
-	 * sequence실행후 PK return
-	 */
-	public int insertStudentBySequence2(Student student) {
-		return 0;
-	}
+	
 
 	/**************************************************
 	 * SELECT[students + address + courses[course_enrollment] JOIN( 1 : 1 : N )
