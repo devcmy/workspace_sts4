@@ -37,6 +37,20 @@ public class StudentDao {
 		return sqlSession.selectList("findAllStudents");
 	}
 	
+
+	/*
+	 * B. select sql의결과타입이 Wrapper,String 객체인경우 resultType : Wrapper, String
+	 */
+	public String findStudentNameById(Integer studId) {
+		return sqlSession.selectOne("findStudentNameById",studId);
+	}
+
+	public List<String> findStudentNameList() {
+		return sqlSession.selectList("findStudentNameList");
+	}
+	
+	
+	
 	/***********************************
 	 * INSERT
 	 ***********************************/
@@ -55,22 +69,35 @@ public class StudentDao {
 		return sqlSession.insert("insertStudentBySequence2",student);
 	}
 	
+	/***********************************
+	 * UPDATE
+	 ***********************************/
+	public int updateStudentById(Student student) {
+		return sqlSession.update("updateStudentById",student);
+
+	}
 	
-	
-	
-	
-	
-	
-	/*
-	 * select sql의결과타입이 Wrapper,String 객체인경우 resultType : Wrapper,String
-	 */
-	public String findStudentNameById(Integer userId) {
-		return null;
+	/***********************************
+	 * DELETE
+	 ***********************************/
+	public int deleteStudentById(Integer studId) {
+		return sqlSession.delete("deleteStudentById",studId);
 	}
 
-	public List<String> findStudentNameList() {
-		return null;
+	public int deleteStudentByName(String name) {
+		return sqlSession.delete("deleteStudentByName",name);
 	}
+
+	public int deleteStudentByNameLike(String name) {
+		return 0;
+	}
+
+	
+	
+	
+	
+	
+	
 
 	/*
 	 * B.select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : DTO,VO,Domain
@@ -105,28 +132,8 @@ public class StudentDao {
 		return null;
 	}
 
-	/***********************************
-	 * DELETE
-	 ***********************************/
-	public int deleteStudentById(Integer studId) {
-		return 0;
-	}
-
-	public int deleteStudentByName(String name) {
-		return 0;
-	}
-
-	public int deleteStudentByNameLike(String name) {
-		return 0;
-	}
-
-	/***********************************
-	 * UPDATE
-	 ***********************************/
-	public int updateStudentById(Student student) {
-		return 0;
-
-	}
+	
+	
 
 
 
