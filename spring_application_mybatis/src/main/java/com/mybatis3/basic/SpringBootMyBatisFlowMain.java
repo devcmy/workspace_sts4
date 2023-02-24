@@ -18,7 +18,9 @@ public class SpringBootMyBatisFlowMain {
 		/*
 		 * 1. SqlSession객체얻기
 		 */
-		System.out.println("1. #### SqlSession객체얻기:");
+		SqlSession sqlSession = appicationContext.getBean(SqlSession.class);
+		System.out.println("1. #### SqlSession객체얻기:"+sqlSession);
+		
 		/*
 		 * 2. SqlSession사용(CRUD)
 		 */
