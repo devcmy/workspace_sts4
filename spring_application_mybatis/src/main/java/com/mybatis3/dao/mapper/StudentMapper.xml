@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis3.dao.mapper.StudentMapper">
+	
+<!--/**************************************************
+ 	* SELECT
+ 	**************************************************/
+	/*
+	 * A.select sql의결과타입이 DTO,VO,Domain객체인경우 resultType : DTO,VO,Domain
+	 */ -->
 	<select id="findStudentById"
 			parameterType="int"
 			resultType="com.mybatis3.domain.Student">
@@ -9,6 +16,16 @@
 	<select id="findAllStudents" resultType="com.mybatis3.domain.Student">
 		select stud_id, name, email,dob from students
 	</select>
-	
+<!-- /***********************************
+	 *             INSERT
+	 ***********************************/ 
+	 parameterType : DTO,VO,Domain // (insert,update,delete는 resultType 기술하지 않음.(어차피 결과타입은 기승전 integer))
+	 -->
+	 <insert id="insertStudent" parameterType="com.mybatis3.domain.Student" >
+	 	insert into students(stud_id,name,email,dob) 
+	 	values (#{studId},#{name},#{email},#{dob})  <!-- property가 #{} 안에 기술 -->
+	 </insert>
+	 
+	 
 	
 </mapper>

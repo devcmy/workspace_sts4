@@ -36,7 +36,21 @@ public class StudentDao {
 	public List<Student> findAllStudents() {
 		return sqlSession.selectList("findAllStudents");
 	}
+	
+	/***********************************
+	 * INSERT
+	 ***********************************/
+	public int insertStudent(Student student) {
+		return sqlSession.insert("insertStudent",student);
+	}
 
+	public int insertStudentBySequence1(Student student) {
+		return 0;
+	}
+	
+	
+	
+	
 	/*
 	 * select sql의결과타입이 Wrapper,String 객체인경우 resultType : Wrapper,String
 	 */
@@ -104,16 +118,7 @@ public class StudentDao {
 
 	}
 
-	/***********************************
-	 * INSERT
-	 ***********************************/
-	public int insertStudent(Student student) {
-		return 0;
-	}
 
-	public int insertStudentBySequence1(Student student) {
-		return 0;
-	}
 
 	/*
 	 * sequence실행후 PK return
