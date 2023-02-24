@@ -32,8 +32,8 @@ public class SpringBootJdbcTemplateMain {
 		 * queryForObject[반환타입 DTO인것]
 		 */
 		String selectDtoSql = "select * from guest where guest_no=?";
-		Object[] paramArray1 = {263}; //이렇게 초기화하거나 -> 다이렉트로 안들어감
-		Object[] paramArray2 = new Object[] {263}; //혹은 이렇게 초기화하거나
+	/*	Object[] paramArray1 = {263}; //이렇게 초기화하거나 -> 다이렉트로 안들어감
+		Object[] paramArray2 = new Object[] {263}; //혹은 이렇게 초기화하거나*/		
 		/*
 		 <<BeanPropertyRowMapper 클래스>>
 		 	ResultSet객체로부터 데이터를 컬럼이름으로 get해서 
@@ -51,17 +51,17 @@ public class SpringBootJdbcTemplateMain {
 												new int[] {Types.INTEGER}, //263 의 타입을 상수로 기술해달라.
 												guestBeanPropertyRowMapper) ; //선언없이 Direct로 집어넣는방법
 		//한개 반환
-		System.out.println("queryForObject[Guest]:"+guest);
+		System.out.println("queryForObject[Guest]:"+guest); //출력이 map으로 나옴(id:ss , password:ss, name:ss ***)
 		
 		/*
-		 * queryForObject[반환타입 String Wrapper] ->1개가 나와야함
+		 * queryForObject[반환타입 String Wrapper] ->1개가 나와야함(출력방식의 차이) 
 		 */
 		String selectStringSql = "select guest_name from guest where guest_no=?";
 		String guest_name = jdbcTemplate.queryForObject(selectStringSql, 
 															new Object[]{264},
 																new int[] {Types.INTEGER},
 																String.class);
-		System.out.println("queryForObject[String]:"+guest_name);
+		System.out.println("queryForObject[String]:"+guest_name); //출력이 mapping이 아니라, string으로 쭉 나옴 (이름,비밀번호,이메일 쭊죾***)
 		
 		
 		/***********************************************************************************************
