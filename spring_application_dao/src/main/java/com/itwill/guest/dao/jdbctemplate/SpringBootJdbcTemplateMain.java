@@ -32,7 +32,7 @@ public class SpringBootJdbcTemplateMain {
 		 * queryForObject[반환타입 DTO인것]
 		 */
 		String selectDtoSql = "select * from guest where guest_no=?";
-	/*	Object[] paramArray1 = {263}; //이렇게 초기화하거나 -> 다이렉트로 안들어감
+		Object[] paramArray1 = {263}; //이렇게 초기화하거나 -> 다이렉트로 안들어감
 		Object[] paramArray2 = new Object[] {263}; //혹은 이렇게 초기화하거나*/		
 		/*
 		 <<BeanPropertyRowMapper 클래스>>
