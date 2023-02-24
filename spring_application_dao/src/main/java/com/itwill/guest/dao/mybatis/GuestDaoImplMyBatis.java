@@ -37,20 +37,17 @@ public class GuestDaoImplMyBatis implements GuestDao {
 
 	@Override
 	public int insertGuest(Guest guest) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("insertGuest", guest);
 	}
 
 	@Override
 	public int updateGuest(Guest guest) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("updateGuest", guest);
 	}
 
 	@Override
 	public int deleteGuest(int no) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("deleteGuest",no);
 	}
 	
 	
