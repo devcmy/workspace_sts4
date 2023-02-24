@@ -8,7 +8,7 @@ NAME    NOT NULL VARCHAR2(50)
 EMAIL   NOT NULL VARCHAR2(50) 
 PHONE            VARCHAR2(15) 
 DOB              DATE         
-ADDR_ID          NUMBER(11)         
+ADDR_ID (FK)     NUMBER(11)         
   
 */
 public class Student

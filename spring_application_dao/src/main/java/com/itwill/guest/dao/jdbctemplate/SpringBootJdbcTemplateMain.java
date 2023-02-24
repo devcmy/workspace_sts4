@@ -41,6 +41,23 @@ public class SpringBootJdbcTemplateMain {
 		 	Guest객체의 Property(멤버변수)에 대입해주는 클래스.
 		 */
 		BeanPropertyRowMapper<Guest> guestBeanPropertyRowMapper = new BeanPropertyRowMapper<Guest>(Guest.class);
+		
+		//RowMapper 커스텀
+		/*
+		RowMapper<Guest> guestMapper=new RowMapper<Guest>() {
+			@Override
+			public Guest mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Guest guest=new Guest(rs.getInt("guest_no"),"","","","","","");
+				
+				return guest;
+			}
+		};
+		*/
+		
+		 
+		
+		
+		
 		//rowMapper가 뽑아서 자동 mapping 해줌
 		
 		//guest class 만들고 <Guest>타입으로 
