@@ -9,45 +9,41 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 @Repository
-public class UserDaoImplJdbcTemplate implements UserDao {
+public class UserDaoImplMybatis implements UserDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
 	public int create(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("create", user);
 	}
 
 	@Override
 	public int update(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("update", user);
 	}
 
 	@Override
 	public int remove(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("remove", userId);
 	}
 
 	@Override
 	public User findUser(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("findUser", userId);
 	}
 
 	@Override
 	public List<User> findUserList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("findUserList");
 	}
 
 	@Override
 	public boolean existedUser(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		return sqlSession.selectOne("existedUser",userId);
 	}
+
+	
 	
 }
