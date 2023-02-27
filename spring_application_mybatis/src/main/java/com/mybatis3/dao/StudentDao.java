@@ -12,13 +12,14 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mybatis3.dao.mapper.StudentMapper;
 import com.mybatis3.domain.Student;
 
 @Repository
 public class StudentDao {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private StudentMapper studentMapper;
 	
 	public StudentDao() {
 	}
@@ -30,11 +31,11 @@ public class StudentDao {
 	 * A.select sql의결과타입이 DTO,VO,Domain객체인경우 resultType : DTO,VO,Domain
 	 */
 	public Student findStudentById(Integer studId) {
-		return sqlSession.selectOne("findStudentById",studId);
+		return studentMapper.findStudentById(studId);
 	}
 
 	public List<Student> findAllStudents() {
-		return sqlSession.selectList("findAllStudents");
+		return studentMapper.findAllStudents();
 	}
 	
 
@@ -42,11 +43,11 @@ public class StudentDao {
 	 * B. select sql의결과타입이 Wrapper,String 객체인경우 resultType : Wrapper, String
 	 */
 	public String findStudentNameById(Integer studId) {
-		return sqlSession.selectOne("findStudentNameById",studId);
+		return studentMapper.findStudentNameById(studId);
 	}
 
 	public List<String> findStudentNameList() {
-		return sqlSession.selectList("findStudentNameList");
+		return studentMapper.findStudentNameList();
 	}
 	
 	
@@ -55,25 +56,25 @@ public class StudentDao {
 	 * INSERT
 	 ***********************************/
 	public int insertStudent(Student student) {
-		return sqlSession.insert("insertStudent",student);
+		return studentMapper.insertStudent(student);
 	}
 
 	public int insertStudentBySequence1(Student student) {
-		return sqlSession.insert("insertStudentBySequence1",student);
+		return studentMapper.insertStudentBySequence1(student);
 	}
 	
 	/*
 	 * sequence실행후 PK return
 	 */
 	public int insertStudentBySequence2(Student student) {
-		return sqlSession.insert("insertStudentBySequence2",student);
+		return studentMapper.insertStudentBySequence2(student);
 	}
 	
 	/***********************************
 	 * UPDATE
 	 ***********************************/
 	public int updateStudentById(Student student) {
-		return sqlSession.update("updateStudentById",student);
+		return studentMapper.updateStudentById(student);
 
 	}
 	
@@ -81,11 +82,11 @@ public class StudentDao {
 	 * DELETE
 	 ***********************************/
 	public int deleteStudentById(Integer studId) {
-		return sqlSession.delete("deleteStudentById",studId);
+		return studentMapper.deleteStudentById(studId);
 	}
 
 	public int deleteStudentByName(String name) {
-		return sqlSession.delete("deleteStudentByName",name);
+		return studentMapper.deleteStudentByName(name);
 	}
 
 	public int deleteStudentByNameLike(String name) {
