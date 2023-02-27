@@ -16,7 +16,8 @@ public interface StudentBasicMapper {
 	 */
 	@Select("select stud_id, name, email, dob from students where stud_id = #{studId}")
 	public Student findStudent(@Param(value ="studId") Integer studId);
+	//findStudent는 직접 기술한것을 이용 -> 둘다있으면 중복이니 하나만 기술할 것.
 	
 	public List<Student> studentList();
-	
+	//studentList는 mapper.xml의 <select>를 이용
 }
