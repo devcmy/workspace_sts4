@@ -45,13 +45,14 @@
 	 	
 	 </insert>
 	 
-	 <insert id="insertStudentBySequence2" parameterType="com.mybatis3.domain.Student"> <!-- PK사용(얻을수있다) o -->
-	 	<selectKey order="BEFORE" resultType="int" keyProperty="studId"> <!-- key값 얻어서 stud id보관 -->
-	 		select students_stud_id_seq.nextval from dual <!--  가상테이블 dual 이용 -->
-	 	</selectKey>
+<!-- <insert id="insertStudentBySequence2" parameterType="com.mybatis3.domain.Student"> --> <!-- PK사용(얻을수있다) o -->
+<!-- <selectKey order="BEFORE" resultType="int" keyProperty="studId"> --> <!-- key값 얻어서 stud id보관 -->
+<!-- 	 		select students_stud_id_seq.nextval from dual  --> <!--  가상테이블 dual 이용 -->
+<!-- 	 	</selectKey>
 	 	insert into students(stud_id,name,email,dob) 
 	 	values (#{studId},#{name},#{email},#{dob})
-	 </insert>
+	 </insert>  -->	 
+	 
 <!-- /***********************************
 	 *             UPDATE
 	 **************************************/  

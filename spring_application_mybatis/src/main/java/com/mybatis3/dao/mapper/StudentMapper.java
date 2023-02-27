@@ -2,7 +2,9 @@ package com.mybatis3.dao.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectKey;
 import org.mybatis.spring.annotation.MapperScans;
 
@@ -24,7 +26,23 @@ public interface StudentMapper {
 	public List<String> findStudentNameList();
 	public int insertStudent(Student student);
 	public int insertStudentBySequence1(Student student);
-	public int insertStudentBySequence2(Student student);
+	/*
+	 *  <insert id="insertStudentBySequence2" parameterType="com.mybatis3.domain.Student"> <!-- PK사용(얻을수있다) o -->
+	 	<selectKey order="BEFORE" resultType="int" keyProperty="studId"> <!-- key값 얻어서 stud id보관 -->
+	 		select students_stud_id_seq.nextval from dual <!--  가상테이블 dual 이용 -->
+	 	</selectKey>
+	 	insert into students(stud_id,name,email,dob) 
+	 	values (#{studId},#{name},#{email},#{dob})
+	 </insert>
+	 */
+	@SelectKey(statement = "select students_stud_id_seq.nextval from dual", 
+			   before = true, 
+			   keyProperty = "studId", 
+			   resultType = Integer.class)
+			//keyColumn -> db의 alias 이름주는것
+	@Insert("insert into students(stud_id,name,email,dob) values (#{student.studId},#{student.name},#{student.email},#{student.dob})")
+	public int insertStudentBySequence2(@Param("student") Student student); //parameter로 student들어옴(이름이 부여되니까, sql문에서도 #{stu.name} 이런식으로 들어와야한다.
+	
 	public int updateStudentById(Student student);
 	public int deleteStudentById(Integer studId);
 	public int deleteStudentByName(String name);
