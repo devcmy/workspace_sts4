@@ -23,8 +23,8 @@ students + addresses [left outer join]
 */
 select stud_id, name, email,phone, a.addr_id, street, city, state, zip, country
 FROM students s 
-left outer join addresses a 
-on s.addr_id=a.addr_id where stud_id=1;
+left outer join addresses a  --조건에 만족하지 않는 왼쪽 테이블의 도 뽑아내야한다.
+on s.addr_id=a.addr_id where stud_id=1; 
 
      
 

@@ -10,9 +10,9 @@ public class SpringBootStudentDaoJOINSELECTMain {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootStudentDaoJOINSELECTMain.class, args);
 		StudentDao studentDao=(StudentDao)appicationContext.getBean(StudentDao.class);
-		System.out.println("---------findStudentByIdWithAddress------------------");
+		System.out.println("---------findStudentByIdWithAddress------------------"); //1:1
 		
-		System.out.println("---------findStudentByIdWithCourses------------------");
+		System.out.println("---------findStudentByIdWithCourses------------------"); //1:N
 		
 		System.out.println("---------findStudentByIdWithAddressWithCourses-------");
 		
