@@ -19,7 +19,7 @@ public class SpringBootTutorDaoJOINSELECTMain {
 				SpringApplication.run(SpringBootTutorDaoJOINSELECTMain.class, args);
 		TutorDao tutorDao = (TutorDao)appicationContext.getBean(TutorDao.class);
 		System.out.println("---------findTutorByIdWithCourses-----------------------------");
-		//System.out.println(tutorDao.findTutorByIdWithCourses(1));
+		System.out.println(tutorDao.findTutorByIdWithCourses(1));
 		System.out.println(tutorDao.findTutorByIdWithCourses(2));
 		
 		

@@ -3,6 +3,7 @@
 <mapper namespace="com.mybatis3.dao.mapper.TutorMapper">
 	<!-- alias 준것에 직접 mapping으로해라  -->
 	<!-- ##############resultMap########### -->
+	
 	<resultMap id="tutorWithCoursesResultMap" 
 				type="com.mybatis3.domain.Tutor" 
 				autoMapping="true">
@@ -15,7 +16,7 @@
 	</resultMap>
 
 
-
+<!-- 
 <select id="findTutorByIdWithCourses" 
 		parameterType="java.lang.Integer"
 		resultMap="tutorWithCoursesResultMap">
@@ -27,5 +28,5 @@
 		on t.tutor_id = c.tutor_id 
 		where t.tutor_id=#{tutorId}
 </select>
-
+ -->
 </mapper>
