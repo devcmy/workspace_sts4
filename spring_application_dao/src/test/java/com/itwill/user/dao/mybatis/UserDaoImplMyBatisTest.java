@@ -61,7 +61,7 @@ class UserDaoImplMyBatisTest {
 	
 	@Test
 	void testExistedUser() throws Exception {
-		assertNotNull(userDao.existedUser("aa"));
+		assertTrue(userDao.existedUser("aa"));
 		System.out.println("aa");
 	}
 	
