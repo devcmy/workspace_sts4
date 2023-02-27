@@ -42,6 +42,7 @@ public interface StudentMapper {
 			//keyColumn -> db의 alias 이름주는것
 	@Insert("insert into students(stud_id,name,email,dob) values (#{student.studId},#{student.name},#{student.email},#{student.dob})")
 	public int insertStudentBySequence2(@Param("student") Student student); //parameter로 student들어옴(이름이 부여되니까, sql문에서도 #{stu.name} 이런식으로 들어와야한다.
+	//@param("student") 기술 안하면 #{studId}로만 기술해줘도된다.
 	
 	public int updateStudentById(Student student);
 	public int deleteStudentById(Integer studId);
