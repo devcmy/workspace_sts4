@@ -93,12 +93,6 @@ public class StudentDao {
 		return 0;
 	}
 
-	
-	
-	
-	
-	
-	
 
 	/*
 	 * B.select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : DTO,VO,Domain
@@ -120,6 +114,40 @@ public class StudentDao {
 	public int updateStudentParamMap(Map studentMap) {
 		return 0;
 	}
+//--------------------------------------------------------------------------------------------------------	
+	/**************************************************
+	 * SELECT[students + addresses JOIN]( 1 : 1 )
+	 **************************************************/
+	/*
+	 * select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : studentWithAddressResultMap
+	 */
+	public Student findStudentByIdWithAddress(Integer studId) {
+		return studentMapper.findStudentByIdWithAddress(studId);
+	}	
+
+	/**************************************************
+	 * SELECT[students + courses[course_enrollment] JOIN( 1 : N )
+	 **************************************************/
+	/*
+	 * select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : studentWithCoursesResultMap
+	 */
+	public Student findStudentByIdWithCourses(Integer studId) {
+		return null;
+	}
+
+	/**************************************************
+	 * SELECT[students + address + courses[course_enrollment] JOIN( 1 : 1 : N )
+	 **************************************************/
+	/*
+	 * select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : studentWithCoursesResultMap
+	 */
+	public Student findStudentByIdWithAddressWithCourses(Integer studId) {
+		return null;
+	}
+
+
+
+	
 	
 	
 	/**************************************************
@@ -133,42 +161,6 @@ public class StudentDao {
 		return null;
 	}
 
-	
-	
-
-
-
-	
-
-	/**************************************************
-	 * SELECT[students + address + courses[course_enrollment] JOIN( 1 : 1 : N )
-	 **************************************************/
-	/*
-	 * select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : studentWithCoursesResultMap
-	 */
-	public Student findStudentByIdWithAddressWithCourses(Integer studId) {
-		return null;
-	}
-
-	/**************************************************
-	 * SELECT[students + courses[course_enrollment] JOIN( 1 : N )
-	 **************************************************/
-	/*
-	 * select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : studentWithCoursesResultMap
-	 */
-	public Student findStudentByIdWithCourses(Integer studId) {
-		return null;
-	}
-
-	/**************************************************
-	 * SELECT[students + addresses JOIN]( 1 : 1 )
-	 **************************************************/
-	/*
-	 * select sql의결과타입이 DTO,VO,Domain객체인경우 resultMap : studentWithAddressResultMap
-	 */
-	public Student findStudentByIdWithAddress(Integer studId) {
-		return null;
-	}
 
 	
 

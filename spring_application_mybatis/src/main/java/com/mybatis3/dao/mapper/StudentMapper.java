@@ -48,6 +48,8 @@ public interface StudentMapper {
 	public int deleteStudentById(Integer studId);
 	public int deleteStudentByName(String name);
 	
+	public Student findStudentByIdWithAddress(Integer studId);
+	
 	
 	
 	

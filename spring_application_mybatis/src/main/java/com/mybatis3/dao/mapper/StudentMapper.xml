@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis3.dao.mapper.StudentMapper">
+	<!-- #################### ResultMap 정의############################ -->
+	<resultMap id="studentWithAddressResultMap" type="com.mybatis3.domain.Student" autoMapping="true">
+		<!-- <result column="STUD_ID" property="studId" /> column 과 property 를 맵핑
+			<result column="NAME" property="name" /> column 과 property 를 맵핑
+			<result column="EMAIL" property="email" /> column 과 property 를 맵핑
+			<result column="DOB" property="dobc" /> column 과 property 를 맵핑 -->
+		<association property="address" javaType="com.mybatis3.domain.Address" autoMapping="true">
+		
+		<!-- <result column="ADDR_ID" property="addrId"/>
+			<result column="STREET" property="street"/>
+			<result column="CIRY" property="city"/>
+			<result column="STATE" property="state"/>
+			<result column="ZIP" property="zip"/>
+			<result column="COUNTRY" property="country"/> 
+			-->
+			
+		</association>
+ 	</resultMap>
+	<!-- 결과의 정의를 mapping하는 map이다 -->
 	
-<!--/**************************************************
+	
+<!--
+	/**************************************************
  	* 				SELECT
  	**************************************************/
 	/*
@@ -27,6 +48,25 @@
 	<select id="findStudentNameList" resultType="java.lang.String">
 		select name from students
 	</select>
+	<!-- 
+	/**************************************************
+ 	* SELECT[students + address JOIN] (1:1)
+ 	**************************************************/ 
+ 	/*
+	 * select sql의결과타입이 DTO,VO,Domain객체인경우 
+	 	resultMap : (기존의 hashmap이 아니라, mapping의 map임)
+	 */
+ 	-->
+	<select id="findStudentByIdWithAddress" 
+			parameterType="java.lang.Integer"
+			resultMap="studentWithAddressResultMap">
+	select stud_id, name, email, dob, a.addr_id, street, city, state, zip, country
+	FROM students s 	
+	left outer join addresses a  
+	on s.addr_id=a.addr_id where stud_id=#{studId} 
+	</select>
+	
+	
 	
 <!-- /***********************************
 	 *             INSERT
@@ -51,7 +91,7 @@
 <!-- 	 	</selectKey>
 	 	insert into students(stud_id,name,email,dob) 
 	 	values (#{studId},#{name},#{email},#{dob})
-	 </insert>  -->	 
+	 </insert>  xml파일말고, studentmapper에 직접 기술함-->	 
 	 
 <!-- /***********************************
 	 *             UPDATE
@@ -79,6 +119,14 @@
 	 <delete id="deleteStudentByName" parameterType="String">
 	 	delete from students where name=#{name}
 	 </delete>
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 	 
 </mapper>
