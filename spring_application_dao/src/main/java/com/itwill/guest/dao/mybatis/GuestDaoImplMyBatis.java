@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.guest.dao.mybatis.mapper.GuestMapper;
 import com.itwill.user.dao.jdbctemplate.User;
 import com.itwill.user.dao.jdbctemplate.UserSQL;
 
@@ -23,31 +24,31 @@ import com.itwill.user.dao.jdbctemplate.UserSQL;
 public class GuestDaoImplMyBatis implements GuestDao {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private GuestMapper guestMapper;
 
 	@Override
 	public List<Guest> selectAll() throws Exception {
-		return sqlSession.selectList("selectAll");
+		return guestMapper.selectAll();
 	}
 
 	@Override
 	public Guest selectByNo(int no) throws Exception {
-		return sqlSession.selectOne("selectByNo",no);
+		return guestMapper.selectByNo(no);
 	}
 
 	@Override
 	public int insertGuest(Guest guest) throws Exception {
-		return sqlSession.insert("insertGuest", guest);
+		return guestMapper.insertGuest(guest);
 	}
 
 	@Override
 	public int updateGuest(Guest guest) throws Exception {
-		return sqlSession.update("updateGuest", guest);
+		return guestMapper.updateGuest(guest);
 	}
 
 	@Override
 	public int deleteGuest(int no) throws Exception {
-		return sqlSession.delete("deleteGuest",no);
+		return guestMapper.deleteGuest(no);
 	}
 	
 	

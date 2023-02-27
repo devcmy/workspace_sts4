@@ -8,40 +8,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.itwill.user.dao.mybatis.mapper.UserMapper;
 @Repository
 public class UserDaoImplMybatis implements UserDao {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private UserMapper userMapper;
 
 	@Override
 	public int create(User user) throws Exception {
-		return sqlSession.insert("create", user);
+		return userMapper.create(user);
 	}
 
 	@Override
 	public int update(User user) throws Exception {
-		return sqlSession.update("update", user);
+		return userMapper.update(user);
 	}
 
 	@Override
 	public int remove(String userId) throws Exception {
-		return sqlSession.delete("remove", userId);
+		return userMapper.remove(userId);
 	}
 
 	@Override
 	public User findUser(String userId) throws Exception {
-		return sqlSession.selectOne("findUser", userId);
+		return userMapper.findUser(userId);
 	}
 
 	@Override
 	public List<User> findUserList() throws Exception {
-		return sqlSession.selectList("findUserList");
+		return userMapper.findUserList();
 	}
 
 	@Override
 	public boolean existedUser(String userId) throws Exception {
-		return sqlSession.selectOne("existedUser",userId);
+		return userMapper.existedUser(userId);
 	}
 
 	
