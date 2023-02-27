@@ -24,7 +24,6 @@
 				autoMapping="true" >
 				<result column="STUDENT_NAME" property="name"/>
 		<collection property="courseList" 
-					javaType="java.util.List" 
 					ofType="com.mybatis3.domain.Course"
 					autoMapping="true">
 				<result column="COURSE_NAME" property="name"/>
