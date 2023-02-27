@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.mybatis3.basic.mapper.StudentBasicMapper;
 import com.mybatis3.domain.Student;
 @SpringBootApplication
 public class SpringBootMyBatisFlowMain {
@@ -20,6 +21,8 @@ public class SpringBootMyBatisFlowMain {
 		 */
 		SqlSession sqlSession = appicationContext.getBean(SqlSession.class);
 		System.out.println("1. #### SqlSession객체얻기:"+sqlSession);
+	
+	
 		
 		/*
 		 * 2. SqlSession사용(CRUD)
