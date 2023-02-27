@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.mybatis.spring.annotation.MapperScans;
 
@@ -49,6 +51,28 @@ public interface StudentMapper {
 	public int deleteStudentByName(String name);
 	
 	public Student findStudentByIdWithAddress(Integer studId);
+	/*
+	<select 	id="findStudentByIdWithCourses" 
+	 			parameterType="java.lang.Integer"
+	 			resultMap="studentWithCoursesResultMap">
+	 	select 	s.stud_id,s.name as student_name,email,dob,
+	 			c.course_id,c.name as course_name,description,start_date,end_date 
+		from students s 
+		join course_enrollment ce
+		on s.stud_id = ce.stud_id
+		join courses c
+		on ce.course_id=c.course_id where s.stud_id=#{studId}
+	 </select>
+	 */
+	@ResultMap("studentWithCoursesResultMap")
+	@Select("	select 	s.stud_id,s.name as student_name,email,dob,"
+			+ "	 			c.course_id,c.name as course_name,description,start_date,end_date "
+			+ "		from students s"
+			+ "		join course_enrollment ce"
+			+ "		on s.stud_id = ce.stud_id"
+			+ "		join courses c"
+			+ "		on ce.course_id=c.course_id where s.stud_id=#{studId}")
+	public Student findStudentByIdWithCourses(@Param("studId") Integer studId);
 	
 	
 	

@@ -16,9 +16,22 @@
 			<result column="ZIP" property="zip"/>
 			<result column="COUNTRY" property="country"/> 
 			-->
-			
 		</association>
  	</resultMap>
+ 	
+ 	<resultMap 	id="studentWithCoursesResultMap" 
+				type="com.mybatis3.domain.Student"
+				autoMapping="true" >
+				<result column="STUDENT_NAME" property="name"/>
+		<collection property="courseList" 
+					javaType="java.util.List" 
+					ofType="com.mybatis3.domain.Course"
+					autoMapping="true">
+				<result column="COURSE_NAME" property="name"/>
+		</collection>
+	</resultMap>
+ 	
+ 	<!-- #################### ResultMap 정의############################ -->
 	<!-- 결과의 정의를 mapping하는 map이다 -->
 	
 	
@@ -66,6 +79,28 @@
 	on s.addr_id=a.addr_id where stud_id=#{studId} 
 	</select>
 	
+	<!-- 
+	/**************************************************
+ 	* SELECT[students + courses_enrollment(course) JOIN] 
+ 	**************************************************/ 
+ 	/*
+	 * select sql의결과타입이 DTO,VO,Domain객체인경우 
+	 	resultMap : findStudentByIdWithCourses 
+	 */
+ 	-->
+	<!--  
+	<select 	id="findStudentByIdWithCourses" 
+	 			parameterType="java.lang.Integer"
+	 			resultMap="studentWithCoursesResultMap">
+	 	select 	s.stud_id,s.name as student_name,email,dob,
+	 			c.course_id,c.name as course_name,description,start_date,end_date 
+		from students s 
+		join course_enrollment ce
+		on s.stud_id = ce.stud_id
+		join courses c
+		on ce.course_id=c.course_id where s.stud_id=#{studId}
+	 </select>
+	-->
 	
 	
 <!-- /***********************************

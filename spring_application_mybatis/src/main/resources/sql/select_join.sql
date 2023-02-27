@@ -57,7 +57,7 @@ select s.*,c.*
 		from students s 
 		join course_enrollment ce
 		on s.stud_id = ce.stud_id
-		join courses c
+		join courses c -- course_enrollment  와 course 다시 join => students + courses
 		on ce.course_id=c.course_id where s.stud_id=1;
 
 /*
