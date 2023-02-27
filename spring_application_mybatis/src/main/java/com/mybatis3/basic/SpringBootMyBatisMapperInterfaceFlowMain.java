@@ -38,7 +38,7 @@ public class SpringBootMyBatisMapperInterfaceFlowMain {
 		System.out.println("#### findStudent:"+studentBasicMapper.findStudent(1));
 
 		
-		System.out.println("#### studentList:" );
+		System.out.println("#### studentList:"+studentBasicMapper.studentList());
 	
 	
 	}
