@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +47,7 @@ public class GuestController {
 		return forwardPath;
 	}
 	@PostMapping("/guest_modify_action")
-	public String guest_modify_action(@ModelAttribute Guest guest) throws Exception{
+	public String guest_modify_action(Guest guest) throws Exception{
 		guestService.updateGuest(guest);
 		String forwardPath = "forward:/WEB-INF/views/guest_view.jsp";
 
@@ -70,10 +71,15 @@ public class GuestController {
 		return forwardPath;
 	}
 
-	@RequestMapping("/guest_remove_action")
-	public String guest_remove_action(@ModelAttribute Guest guest) throws Exception {
+	@PostMapping("/guest_remove_action")
+	public String guest_remove_action(@RequestParam int guest_no,
+			   						  @RequestParam(name = "guest_name") String guest_name,
+			                          @RequestParam String guest_email,
+			                          @RequestParam String guest_homepage,
+			                          @RequestParam String guest_title,
+			                          @RequestParam String guest_content) throws Exception {
 		String forwardPath = "redirect:guest_list.jsp";
-		guestService.deleteGuest(Integer.parseInt("guest_no"));
+		guestService.deleteGuest(guest_no);
 		
 		return forwardPath;
 	}
