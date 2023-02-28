@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration //이 클래스가 스프링 구성 파일임을 나타냅니다.
-@EnableWebMvc //스프링 MVC를 사용할 수 있도록 활성화합니다.
 public class WebConfig implements WebMvcConfigurer{ //WebMvcConfigurer 인터페이스를 구현하여 스프링 MVC 구성에 관련된 메서드를 구현할 수 있습니다.
 	/*
 	 * weclome file 설정 "/"로 들어오면 forward시켜줘야함  
