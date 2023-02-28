@@ -34,7 +34,7 @@ public class RequestParamModelAttributeController {
 			  String guest_email = request.getParameter("guest_email");
 			  String guest_homepage = request.getParameter("guest_homepage");
 			  String guest_title = request.getParameter("guest_title");
-			  String guest_content = request.getParameter("guest_content");
+			  String guest_content = request.getParameter("guest_content");    
 		 */
 		Guest insertGuest = new Guest(0, "이름", null, "이메일", "홈페이지", "제목", "내용");
 		System.out.println("### @RequestParam ###");
