@@ -1,14 +1,13 @@
-package com.itwill.user;
+package com.itwill;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class SpringWebApplicationOverviewApplication {
+public class SpringBootWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringWebApplicationOverviewApplication.class, args);
+		SpringApplication.run(SpringBootWebApplication.class, args);
 	}
 
 }
