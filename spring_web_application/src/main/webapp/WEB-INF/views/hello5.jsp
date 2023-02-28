@@ -10,7 +10,7 @@
 <h1>hello5.jsp</h1>
 <hr/>
 <ol>
-	<li>/hello5.do요청</li>
+	<li>/hello5 요청</li>
 	 <li>
 	 	DispatcherServlet이 HelloAnnotationMultiRequestMappingController 객체의 hello5() 메쏘드 호출	
 	 </li> 
