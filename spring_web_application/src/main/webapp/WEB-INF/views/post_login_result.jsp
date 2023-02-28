@@ -9,7 +9,7 @@
 <body>
 <h1>post_login_result.jsp</h1><hr/>
 <ol>
-	<li>POST 방식의 login.do 의실행결과</li>
+	<li>POST 방식의 login 의실행결과</li>
 	<li>id 파라메타:${param.id}</li>
 	<li>password 파라메타:${param.password}</li>
 	<li>session sUserId: ${sUserId}</li>
