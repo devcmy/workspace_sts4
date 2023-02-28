@@ -9,11 +9,11 @@
 </head>
 <body>
 <h3>user_list.jsp</h3><hr/>
-<ol>
+<ul>
 	<c:forEach items="${userList}" var="user">
 		<li>${user.id},${user.name}</li>
 	</c:forEach>
-</ol>
+</ul>
 
 
 
