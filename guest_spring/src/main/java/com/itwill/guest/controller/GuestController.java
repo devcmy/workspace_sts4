@@ -1,5 +1,7 @@
 package com.itwill.guest.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,11 @@ import com.itwill.guest.Guest;
 import com.itwill.guest.GuestService;
 @Controller
 public class GuestController {
-	@Autowired
-	private GuestService guestService;
 	
-	public GuestController() {
-		
+	private GuestService guestService;
+	@Autowired
+	public GuestController(GuestService guestService) {
+		this.guestService = guestService;
 		System.out.println(">>>GuestController");
 		
 	}
@@ -30,8 +32,9 @@ public class GuestController {
 		return forwardPath;
 	}
 	@RequestMapping("/guest_list")
-	public String guest_list(@ModelAttribute Guest guest) {
+	public String guest_list(@ModelAttribute Guest guest) throws Exception {
 		String forwardPath = "forward:/WEB-INF/views/guest_list.jsp";
+		guestService.selectAll();
 		return forwardPath;
 	}
 	@RequestMapping("/guest_error")
@@ -95,9 +98,9 @@ public class GuestController {
 		return forwardPath;
 	}
 	@PostMapping("/guest_write_action")
-	public String guest_write_action(@ModelAttribute Guest guest) {
+	public String guest_write_action(@ModelAttribute Guest guest) throws Exception {
 		String forwardPath = "forward:/WEB-INF/views/guest_view.jsp";
-
+		guestService.insertGuest(guest);
 		return forwardPath;
 	}
 
