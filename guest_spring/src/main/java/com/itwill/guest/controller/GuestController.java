@@ -30,9 +30,8 @@ public class GuestController {
 		return forwardPath;
 	}
 	@RequestMapping("/guest_list")
-	public String guest_list() {
+	public String guest_list(@ModelAttribute Guest guest) {
 		String forwardPath = "forward:/WEB-INF/views/guest_list.jsp";
-
 		return forwardPath;
 	}
 	@RequestMapping("/guest_error")
