@@ -24,7 +24,7 @@ public class GuestController {
    
    @RequestMapping("/guest_main")
    public String guest_main() {
-      String forwardPath = "forward:/WEB-INF/views/guest_main.jsp";
+      String forwardPath = "guest_main";
       return forwardPath;
    }
    
@@ -32,20 +32,16 @@ public class GuestController {
    public String guest_list(HttpServletRequest request) throws Exception {
       List<Guest> guestList = guestService.selectAll();
       request.setAttribute("guestList", guestList);
-      String forwardPath = "forward:/WEB-INF/views/guest_list.jsp";
+      String forwardPath = "guest_list";
       return forwardPath;
    }
    @RequestMapping("/guest_error")
    public String guest_error() {
-      String forwardPath = "forward:/WEB-INF/views/guest_error.jsp";
+      String forwardPath = "guest_error";
       return forwardPath;
    }
 
-   @GetMapping("/guest_modify_action")
-   public String guest_modify_action_get() {
-      String forwardPath = "redirect:guest_error";
-      return forwardPath;
-   }
+ 
 
    @RequestMapping("/guest_modify_action")
    public String guest_modify_action(Guest guest) throws Exception {
@@ -54,25 +50,17 @@ public class GuestController {
       return forwardPath;
    }
    
-   @GetMapping("/guest_modify")
-   public String guest_modify_get() {
-      String forwardPath = "redirect:guest_error";
-      return forwardPath;
-   }
+  
    
    @RequestMapping("/guest_modify_form")
    public String guest_modify_form(int guest_no, Model model) throws Exception {
       Guest modifyGuest = guestService.selectByNo(guest_no);
       model.addAttribute("guest", modifyGuest);
-      String forwardPath = "forward:/WEB-INF/views/guest_modify_form.jsp";
+      String forwardPath = "guest_modify_form";
       return forwardPath;
    }
    
-   @GetMapping("/guest_remove_action")
-   public String guest_remove_action_get() {
-      String forwardPath = "redirect:guest_error";
-      return forwardPath;
-   }
+  
 
    @RequestMapping("/guest_remove_action")
    public String guest_remove_action(int guest_no) throws Exception {
@@ -85,15 +73,11 @@ public class GuestController {
    public String guest_view(int guest_no, Model model) throws Exception {
       Guest guest = guestService.selectByNo(guest_no);
       model.addAttribute("guest", guest);
-      String forwardPath = "forward:/WEB-INF/views/guest_view.jsp";
+      String forwardPath = "guest_view";
       return forwardPath;
    }
    
-   @GetMapping("/guest_write_action")
-   public String guest_write_action_get() {
-      String forwardPath = "redirect:guest_error";
-      return forwardPath;
-   }
+   
    
    @RequestMapping("/guest_write_action")
    public String guest_write_action(Guest guest) throws Exception {
@@ -104,9 +88,15 @@ public class GuestController {
 
    @RequestMapping("/guest_write_form")
    public String guest_write_form() {
-      String forwardPath = "forward:/WEB-INF/views/guest_write_form.jsp";
+      String forwardPath = "guest_write_form";
       return forwardPath;
 
    }
 
+   //모아서 get방식으로 들어오면 main으로 redirect 하겟다
+   @GetMapping(value = {"guest_modify_form","guest_modify_action","guest_wrtie_action","guest_remove_action"})
+   public String guest_get() {
+	   String forwardPaht="redirect:guest_main";
+	   return forwardPaht;
+   }
 }

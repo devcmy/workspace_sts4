@@ -45,7 +45,7 @@
 	<!-- <li><s:message code="nv.bc" arguments="유저,리스트" argumentSeparator=","/></li>  -->  
 	
 	 <li>Spring Container에 등록된 MessageSource 빈객체를 @를 이용해서 JSP에서직접호출</li>
-	 <li></li> 
+	 <li><s:eval expression="@messageSource.getMessage('nv.bc',new Object[]{'유저','리스트'},new java.util.Locale('en','US'))"/> </li> 
 	 <li>Controller에서 생성한 메세지:</li>
 	 <li>Service에서 생성한 메세지:</li>
 </ol>
