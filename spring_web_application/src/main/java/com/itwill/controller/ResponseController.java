@@ -12,6 +12,7 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.AbstractView;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceView;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.itwill.view.XMLView;
@@ -60,22 +61,23 @@ public class ResponseController {
 			  
 			  최종적으로 forwarding(InternalResourceView) view or redirect view 반환함
 			  
-		  << mcv-config-view-resolver.xml >>
-		  <!-- InternalResourceViewResolver객체 -->
-		 <bean 	id="myInternalResourceViewResolver" 
-			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-			<property name="order" value="1"/>
-			<property name="prefix" value="/WEB-INF/views/"/>
-			<property name="suffix" value=".jsp"/>
-		</bean>		
+		  1.InternalResourceViewResolver등록(WebConfig.java 파일에 등록)
+		 	@Bean 
+			public InternalResourceViewResolver internalResourceViewResolver() { //jsp를 view로 설정하기위해 -> 아래설정을 통해 "return "response_forward_view_name"; 기술해도 된다
+				InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+				internalResourceViewResolver.setPrefix("/WEB-INF/views/");
+				internalResourceViewResolver.setSuffix(".jsp");
+				internalResourceViewResolver.setOrder(1);
+				return internalResourceViewResolver;
+			}
 		
-		< Controller반환 String >>
-			1.forward:/WEB-INF/views/response_view_name.jsp ==> prefix,suffix설정적용안됨
-		    2.response_forward_view_name   					==> prefix,suffix설정적용됨
-		    3.redirect:xxx.jsp     							==> prefix,suffix설정적용안됨
+			< Controller반환 String >>
+				1.forward:/WEB-INF/views/response_view_name.jsp ==> forward: 붙이면 prefix,suffix설정적용안됨
+			    2.response_forward_view_name   					==> 기본적용이되서, prefix,suffix설정적용됨
+			    3.redirect:xxx.jsp     							==> prefix,suffix설정적용안됨
 		 */
-		return "forward:/WEB-INF/views/response_forward_view_name.jsp";
-		//return "response_forward_view_name";
+		//return "forward:/WEB-INF/views/response_forward_view_name.jsp";
+		return "response_forward_view_name"; //forward을 안붙음.
 	} 
 	
 	/*##################redirect###########################*/
