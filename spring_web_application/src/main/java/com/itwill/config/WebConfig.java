@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration //이 클래스가 스프링 구성 파일임을 나타냅니다.
 //@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{ //WebMvcConfigurer 인터페이스를 구현하여 스프링 MVC 구성에 관련된 메서드를 구현할 수 있습니다.
-	//재정의받아서 implement받는건 전역설정에 필요한경우. ( @configuration붙어줘야함)
+	//재정의받아서 implement받는건 전역설정에 필요한경우도. ( @configuration붙어줘야함)
 	/*
 	 * weclome file 설정 "/"로 들어오면 forward시켜줘야함  
 	 */

@@ -53,7 +53,7 @@ public class SpringModelController {
 		 */
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("modelandview","모델앤뷰데이타");
-		modelAndView.setViewName("forward:/WEB-INF/views/spring_model.jsp");
+		modelAndView.setViewName("forward:/WEB-INF/views/spring_model.jsp"); //뷰 설정
 		return modelAndView;
 	}
 	@RequestMapping("/model_all")
