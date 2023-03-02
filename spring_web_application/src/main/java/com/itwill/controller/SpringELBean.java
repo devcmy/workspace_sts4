@@ -2,7 +2,7 @@ package com.itwill.controller;
 
 import org.springframework.stereotype.Component;
 
-
+@Component("elBean") //BEAN으로 등록
 public class SpringELBean {
 	private String member1;
 	private String member2;

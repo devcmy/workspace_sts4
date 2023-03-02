@@ -13,7 +13,7 @@ import com.itwill.dto.Guest;
 public class SpringCustomTagSPELController {
 	@GetMapping("/jstl_fmt_i18n")
 	public String jstl_fmt_i18n() {
-		return "jstl_fmt_i18n";
+		return "jstl_fmt_i18n"; //경로와 jsp생략(bean name view resolver 이용)
 		
 	}
 	@GetMapping("/spring_customtag_spel")
