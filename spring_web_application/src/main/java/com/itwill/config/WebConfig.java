@@ -8,7 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 
 @Configuration //이 클래스가 스프링 구성 파일임을 나타냅니다.
+//@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{ //WebMvcConfigurer 인터페이스를 구현하여 스프링 MVC 구성에 관련된 메서드를 구현할 수 있습니다.
+	//재정의받아서 implement받음 ( @configuration붙어줘야함)
 	/*
 	 * weclome file 설정 "/"로 들어오면 forward시켜줘야함  
 	 */
