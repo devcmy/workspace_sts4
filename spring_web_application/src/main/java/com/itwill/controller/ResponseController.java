@@ -16,21 +16,21 @@ import com.itwill.view.XMLView;
 public class ResponseController {
 	/*##################forward###########################*/
 	/*
-	 * fowading view객체반환
+	 * 1. fowading view객체반환
 	 */
-	@RequestMapping("/response_forward_view_object.do")
-	public View response_forward_view_object() {
-		InternalResourceView internalResourceView=new InternalResourceView();
-		internalResourceView.setUrl("/WEB-INF/views/response_forward_view_object.jsp");
+	@RequestMapping("/response_forward_view_object")
+	public View response_forward_view_object() { //View 객체(interface)를 반환하는경우도 있다.(View Resolver을 거치지않고)
+		InternalResourceView internalResourceView=new InternalResourceView(); //InternalResourceView  -> Forwarding View라는것. 
+		internalResourceView.setUrl("/WEB-INF/views/response_forward_view_object.jsp"); //URL을 기술한다.
 		/*
-		 * 1. Controller가 InternalResourceView 객체(URL:/WEB-INF/views/response_forward_view_object.jsp)반환
-		 * 2. DispatcherServlet은 반환받은 View(InternalResourceView)객체의 renderMergedOutputModel 메쏘드호출
+		 * 1. Controller가 InternalResourceView 객체(URL:/WEB-INF/views/response_forward_view_object.jsp) 다이렉트로 반환 -> DispatcherServlet 에게
+		 * 2. DispatcherServlet은 반환받은 View(InternalResourceView)객체의 renderMergedOutputModel 메쏘드호출(다이렉트로 받으면, Resolver를 안찾음)
 		 *      
 		 *      protected void renderMergedOutputModel(	Map<String, Object> model, 
 		 *      										HttpServletRequest request, 
 		 *      										HttpServletResponse response) throws Exception;
-		 * 
-		 * 3. renderMergedOutputModel 메쏘드에서는 /WEB-INF/views/response_forward_view_object.jsp로 forward
+		 * 				model객체를 사용해서, 넘겨주고, response로 출력함.
+		 * 3. renderMergedOutputModel 메쏘드에서는 /WEB-INF/views/response_forward_view_object.jsp(작성한 URL)로 forward 해준다.
 		 * 
 		 * 
 		 */
@@ -73,7 +73,7 @@ public class ResponseController {
 	
 	/*##################redirect###########################*/
 	/*
-	 * redirect view객체반환
+	 * 2. redirect view객체반환
 	 */
 	@RequestMapping("/response_redirect_view_object.do")
 	public View response_redirect_view_object() {
@@ -120,7 +120,7 @@ public class ResponseController {
 	
 	/*#########################View객체가직접 xml(json,text)출력[XMLView]###########################*/
 	/*
-	 * xml출력 view object반환
+	 * 3. xml출력 view object반환
 	 */
 	@RequestMapping("/response_xml_view_object.do")
 	public View response_xml_view_object(Model model) {

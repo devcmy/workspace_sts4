@@ -11,7 +11,7 @@
 <p>
  1.Controller가 InternalResourceView 객체
   (URL:/WEB-INF/view/response_forward_view_object.jsp)를반환<br/>
- 2.URL--> /WEB-INF/view/response_forward_view_object.jsp forward<br/>
+ 2.URL--> /WEB-INF/view/response_forward_view_object.jsp로 forward 해줌<br/>
 </p>
 
 </body>
