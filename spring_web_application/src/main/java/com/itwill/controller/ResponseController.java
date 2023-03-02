@@ -185,27 +185,34 @@ public class ResponseController {
 		  6 . DispatcherServlet객체는 반환받은 View객체(XMLView)객체의 renderMergedOutputModel() 메쏘드호출한다: 	
 		  7 . XML출력 	  
 			  
-		  << mcv-config-view-resolver.xml >>
-				  /*************View 객체등록 ***************
-				 	@Component("xmlView")
-					public class XMLView extends AbstractView {
-					}
+
+		  /*************View 객체등록 ***************
+		 	@Component("xmlView")
+			public class XMLView extends AbstractView {
+			}
 			
-			/********* ViewResolver객체등록 --> view Resolver가 xmlVie를 찾을수있도록, (@annotation으로 등록 : @Compononent)
+			/********* ViewResolver객체등록 --> view Resolver가 xmlView를 찾을수있도록, (@annotation으로 등록 : @Compononent)
 			1. WebConfig.java (자바설정파일)에 BeanNameViewResolver를 등록한다.
 			
 				@Bean //반환되는 객체가 bean으로 등록
-				public BeanNameViewResolver beanNameViewResolver() {
-				}
+					public BeanNameViewResolver beanNameViewResolver() {
+						BeanNameViewResolver beanNameViewResolver = new BeanNameViewResolver();
+						beanNameViewResolver.setOrder(0); //우선순위가 가장높음
+						return beanNameViewResolver;
+					}
 			
 			2. InternalResourceViewResolver 등록[빈으로 정의하지않아도 기본생성됨]
 			
-				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-					<property name="order" value="1"/>
-					<!-- InternalResouceView객체생성후 DispatcherServlet에 반환시 forward path에 prefix,suffix -->
-					<property name="prefix" value="/WEB-INF/views/"/>
-					<property name="suffix" value=".jsp"></property>
-				</bean>
+				설정을 WebConfig.java파일에 InternalResourceViewResolver등록
+				@Bean 
+			public InternalResourceViewResolver internalResourceViewResolver() { //jsp를 view로 설정하기위해 -> 아래설정을 통해 "return "response_forward_view_name"; 기술해도 된다
+				InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+				internalResourceViewResolver.setPrefix("/WEB-INF/views/");
+				internalResourceViewResolver.setSuffix(".jsp");
+				internalResourceViewResolver.setOrder(1);
+				return internalResourceViewResolver;
+			}
+				
 			  
 		*/
 		
