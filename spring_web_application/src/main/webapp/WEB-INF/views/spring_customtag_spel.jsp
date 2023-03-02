@@ -42,6 +42,7 @@
 	<li>논리리터럴(SPEL):<s:eval expression="true"/></li>
 	<li>변수1(EL String Wrraper):${name0},${price0},${name1},${married1}</li>
 	<li>변수2(EL Bean):${guest.guest_name},${guest.guest_email}</li>
+	
 	<li>
 		변수1(SPEL String Wrapper):
 			<s:eval expression="price1"/>,
