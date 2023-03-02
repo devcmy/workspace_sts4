@@ -34,7 +34,7 @@
 	   -->태그 사용을 하여야한다.
 </p>
 <ul>
-	<li>문자열리터럴(EL):&dollar;${'KIM'.replace('K','N')}</li> <!-- 메소드 사용 가능 -->
+	<li>문자열리터럴(EL): &dollar;${'KIM'.replace('K','N')}</li> <!-- 메소드 사용 가능 -->
 	<li>문자열리터럴(SPEL):<s:eval expression="'KIM'.replace('K','N')"/> </li>
 	<li>숫자리터럴(EL):${1234532+234342}</li>
 	<li>숫자리터럴(SPEL):<s:eval expression="12345+2343243"></s:eval></li>
