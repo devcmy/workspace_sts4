@@ -13,7 +13,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 
 /*
- * 웹 애플리케이션 초기화 과정에서 Dispatcher Servlet을 등록하는 역할을 합니다.
+ * 웹 애플리케이션 초기화 과정에서 Dispatcher Servlet을 등록하는 역할을 합니다.(초기설정)
  */
 
 public class WebAppInitConf implements WebApplicationInitializer {
