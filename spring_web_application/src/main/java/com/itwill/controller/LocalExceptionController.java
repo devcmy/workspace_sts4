@@ -36,6 +36,18 @@ public class LocalExceptionController {
 		return "business_result2";
 	}
 	
+	/*컨트롤러 메서드에서 예외가 발생하면, 스프링은 @ExceptionHandler가 붙은 메서드를 찾아서 예외를 전달합니다. 
+	 * 이 메서드에서는 해당 예외를 처리하고, 예외가 발생한 요청에 대한 적절한 응답을 반환할 수 있습니다
+	 * 
+	 */
+	
+	
+	@ExceptionHandler(BusinessException1.class) 
+	public String handle_business_exception1(BusinessException1 e) {
+		
+		return "business_error_result";
+	}
+	
 }
 
 
