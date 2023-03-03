@@ -38,7 +38,7 @@ public class WebAppInitConf implements WebApplicationInitializer {
 				dispatcherServlet.setLoadOnStartup(1);
 				dispatcherServlet.addMapping("/");
 				//encodingFilter
-				FilterRegistration.Dynamic filterRegistration = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter("UTF-8", true));
+				FilterRegistration.Dynamic filterRegistration = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter("UTF-8", true)); //필터도 직접 설정이 가능
 				filterRegistration.addMappingForUrlPatterns(null, true, "/*");
 				*/
 	}
