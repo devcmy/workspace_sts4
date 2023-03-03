@@ -14,6 +14,10 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 public class ApplicationConfig {
+	
+	@Autowired
+	Environment environment;
+	
 	/***************MessageSource객체등록*******************/
 	 @Bean("messageSource")
 	public MessageSource messageSource() {
@@ -24,13 +28,12 @@ public class ApplicationConfig {
 	} 
 	
 	
-	/*ㅉ
+	/*
 	 application.properties파일의 값얻기위한객체
 	 */ 
 	//데이터소스 바꿔주기위해 값 받아오는 객체
-	 
-	@Autowired
-	Environment environment;
+	
+	/**************DataSource객체등록*******************/
 	@Bean
 	public DataSource apacheDataSource() {
 		BasicDataSource dataSource=new  BasicDataSource();
