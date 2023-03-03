@@ -11,7 +11,7 @@ namespace="com.itwill.guest.mapper.GuestMapper">
 		SELECT * FROM GUEST
 		WHERE guest_no=#{guest_no}
 	</select>
-	<insert id="insertGuest" parameterType="Guest">
+	<insert id="insertGuest" parameterType="com.itwill.guest.Guest">
 		<selectKey resultType="java.lang.Integer"
 			keyProperty="guest_no" order="BEFORE">
 			SELECT guest_no_seq.nextval FROM DUAL
@@ -25,7 +25,7 @@ namespace="com.itwill.guest.mapper.GuestMapper">
 	<delete id="deleteGuest" parameterType="java.lang.Integer">
 		delete from guest where guest_no = #{guest_no}
 	</delete>
-	<update id="updateGuest" parameterType="Guest">
+	<update id="updateGuest" parameterType="com.itwill.guest.Guest">
 		update guest set  guest_name=#{guest_name}, guest_email=#{guest_email},
 		                  guest_homepage=#{guest_homepage}, guest_title=#{guest_title}, 
 		                  guest_content=#{guest_content} 
