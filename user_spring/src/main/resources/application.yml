@@ -1,0 +1,15 @@
+
+#server.port=80
+#server.servlet.context-path=/user_spring
+
+#공백을 주지 않으면 에러
+
+server:
+  port: 81
+  servlet.context-path: /user_spring
+  
+  servlet:
+     encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
