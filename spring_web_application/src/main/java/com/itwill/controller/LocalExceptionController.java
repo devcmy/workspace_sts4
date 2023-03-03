@@ -1,6 +1,7 @@
 package com.itwill.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,10 +44,26 @@ public class LocalExceptionController {
 	
 	
 	@ExceptionHandler(BusinessException1.class) 
-	public String handle_business_exception1(BusinessException1 e) {
-		
+	public String handle_business_exception1(BusinessException1 e, Model model) {
+		model.addAttribute("error_msg",e.getMessage());
 		return "business_error_result";
 	}
+	
+	@ExceptionHandler(BusinessException2.class) 
+	public ModelAndView handle_business_exception2(BusinessException2 e) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("business_error_result");
+		modelAndView.addObject("error_msg",e.getMessage());
+		return modelAndView;
+	}
+	/*
+	@ExceptionHandler(Exception.class)
+	public String handle_business_exception3(NullPointerException e){
+		return "business_error_result";
+	}
+	*/
+	
+	
 	
 }
 
