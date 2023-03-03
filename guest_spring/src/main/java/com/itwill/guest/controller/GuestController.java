@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.guest.Guest;
 import com.itwill.guest.GuestService;
@@ -91,26 +92,30 @@ public class GuestController {
    }
    
    
-   
-   
-   
+   /*
+    * Parameter에 guest_no가 존재하면
+    */
    @RequestMapping(value = "/guest_view", params = "guest_no")
    public String guest_view(@RequestParam int guest_no, Model model) throws Exception {
       Guest guest = guestService.selectByNo(guest_no);
       model.addAttribute("guest", guest);
-      String forwardPath = "guest_view";
+      String forwardPath = "guest_view";    
       return forwardPath;
    }
    
    
    
-   @RequestMapping("/guest_write_action")
-   public String guest_write_action(Guest guest) throws Exception {
-      guestService.insertGuest(guest);
-      String forwardPath = "redirect:guest_view?guest_no="+ guest.guest_no;
-      return forwardPath;
+   @RequestMapping("/guest_write_action") //redirect에 넣어주면, 알아서 붙혀줌. (redirect:guest_view?guest_no=1 대신 사용)
+   public String guest_write_action(Guest guest, RedirectAttributes redirectAttributes) throws Exception {
+      int guest_no = guestService.insertGuest(guest);
+      redirectAttributes.addAttribute("guest_no",guest_no);
+      return "redirect:guest_view";
    }
+   
+   
 
+   //다른컨트롤러 메소드 실행하려면 forward: 붙이면됨 -> prefix, surfix안 타고 다른 컨트롤러의 메소드로 간다.
+   //하지만, 이 방식은 비효율적임(계속 들고다니기떄문에)
    @RequestMapping("/guest_write_form")
    public String guest_write_form() {
       String forwardPath = "guest_write_form";

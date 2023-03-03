@@ -37,8 +37,8 @@ public class GuestDaoImpl  implements GuestDao{
 	 * CREATE
 	 */
 	public int insertGuest(Guest guest) throws Exception {
-		int insertRowCount=guestMapper.insertGuest(guest); 
-		return insertRowCount;
+		guestMapper.insertGuest(guest); 
+		return guest.getGuest_no();
 	}
 	/*
 	 * READ ONE
