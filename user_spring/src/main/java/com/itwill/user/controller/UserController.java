@@ -9,11 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwill.user.User;
 import com.itwill.user.UserService;
+import com.itwill.user.exception.ExistedUserException;
+import com.itwill.user.exception.PasswordMismatchException;
+import com.itwill.user.exception.UserNotFoundException;
 /*
  * /user_main 
  * /user_write_form 
@@ -30,6 +34,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+      
+	@RequestMapping(value = "/")
+	public String user_welcome() { //welcome file
+		return "forward:/index.jsp";
+	}
 
 	@RequestMapping(value = "/user_main")
 	public String user_main() {
@@ -40,19 +49,19 @@ public class UserController {
 		String forward_path = "user_write_form";
 		return forward_path;
 	}
-	@RequestMapping("/user_write_action")
-	public String user_write_action_post(User user, Model model) throws Exception {
+	@PostMapping("/user_write_action")
+	public String user_write_action_post(@ModelAttribute("fuser") User user, Model model) throws Exception {
 		String forward_path = "";
-		int CreateR = userService.create(user);
-		if (CreateR == -1) {
-			String msg = user.getUserId()+ "는 이미 사용중인 아이디입니다.";
-			model.addAttribute("msg",msg);
-			model.addAttribute("fuser",user);
-			forward_path = "user_write_form";
-		}else {
-			model.addAttribute("user",user);
-			forward_path = "redirect:user_login_form";
+		try {
+				int rowCount = userService.create(user);
+				forward_path="redirect:user_login_form";
+				
+		}catch (ExistedUserException e) { //아이디 중복 -> 사용자 정의 exception (catch로 사용자정의 Exception(비즈니스 상 Error) 잡아야한다)
+				forward_path="user_write_form";
+				model.addAttribute("msg",e.getMessage()); //해당 exception파일안에 msg가 담겨있다.
+				//model.addAttribute("fuser",user); - @ModelAttribute("fuser") 라고 기술해줌으로써, 작성할 필요가 없다. 
 		}
+		
 		return forward_path;
 	}
 	@RequestMapping("/user_login_form")
@@ -61,28 +70,24 @@ public class UserController {
 		return forward_path;
 	}
 	@RequestMapping("/user_login_action")
-	public String user_login_action_post(User user, HttpSession session,Model model) throws Exception {
-		String userId = user.getUserId();
-		String pass = user.getPassword();
-		int loginResult = userService.login(userId,pass);
+	public String user_login_action_post(@ModelAttribute("fuser") User user, Model model,HttpSession session) throws Exception {
 		String forwardPath = "";
-		
-		if(loginResult == 0) {
-			String msg1=userId+" 는 존재하지 않는 아이디입니다.";
-			model.addAttribute("msg1",msg1);
-			model.addAttribute("fuser",user);
-			forwardPath = "user_login_form";
-		}else if (loginResult == 1) {
-			String msg2="비밀번호가 일치하지 않습니다.";
-			model.addAttribute("msg2",msg2);
-			model.addAttribute("fuser",user);
-			forwardPath = "user_login_form";
-		}else if (loginResult == 2) {
-			session.setAttribute("sUserId", userId);
-			forwardPath = "user_main";
+		try {
+			userService.login(user.getUserId(), user.getPassword());
+			session.setAttribute("sUserId", user.getUserId());
+			forwardPath="redirect:user_main"; //굳이 forward 로  할 이유가 없어서, redirect로 하거나, jsp로 넘겨주는 방법을 택한다.
+		}catch (UserNotFoundException e) {
+			e.printStackTrace();
+			model.addAttribute("msg1",e.getMessage());
+			forwardPath="user_login_form";
+		}catch (PasswordMismatchException e) {
+			e.printStackTrace();
+			model.addAttribute("msg2",e.getMessage());
+			forwardPath="user_login_form";
 		}
 		return forwardPath;
 	}
+	
 	@RequestMapping("/user_view")
 	public String user_view(User user, HttpSession session, HttpServletRequest request, Model model) throws Exception {
 		/************** login check **************/
@@ -135,11 +140,21 @@ public class UserController {
 		String forwardPath = "redirect:user_main";
 		return forwardPath;
 	}
+	/**************** GET방식들어오면 USER_MAIN REDIRECTION *********/
 	@GetMapping(value = {"user_modify_form","user_modify_action","user_write_action","user_remove_action"})
 	public String user_action_get() {
 		String forwardPath = "redirect:user_main";
 		return forwardPath;
 	}
+	
+	/**************************Local Exception Handler *********************/
+	@ExceptionHandler(Exception.class)
+	public String user_exception_handler(Exception e) {
+		return "user_error";
+	}
+	
 
-
+	
+	
+	
 }

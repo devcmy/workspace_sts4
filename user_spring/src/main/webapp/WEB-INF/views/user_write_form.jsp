@@ -2,19 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	/******user_write_action.do[UserWriteActionController]에서 아이디중복일때 존재하는데이타*******
-	String msg=(String)request.getAttribute("msg");
-	User fuser=(User)request.getAttribute("fuser");
-	*/
 	
-	/********user_write_form.do[UserWriteFormController]에서 요청할때*************
-	if(msg==null){
-		msg="";
-	}
-	if(fuser==null){
-		fuser=new User("","","","");
-	}
-	*/
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

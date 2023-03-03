@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer{
 	/********************WebMvcConfigurer재정의*********************/
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("forward:/index.jsp");
+		registry.addViewController("/").setViewName("forward:/index.jsp"); //웰컴파일 설정
 	}
 	/*
 	@Override
