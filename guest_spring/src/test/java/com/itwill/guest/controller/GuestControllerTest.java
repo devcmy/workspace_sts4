@@ -5,11 +5,13 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,36 +21,42 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.itwill.guest.Guest;
 import com.itwill.guest.GuestService;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@AutoConfigureMockMvc 
+@AutoConfigureMockMvc
 class GuestControllerTest {
-	
-	@Autowired//가짜로 mvc만듦
+	@Autowired
 	MockMvc mockMvc;
 	
-	@MockBean //가짜객체만듦, 가짜로 bean 생성
+	@MockBean
 	GuestService guestService;
-	
-	
-	//ctrl+shift+o -> static으로 넣어줌(import)
-
+	@Test
 	void testGuest_list() throws Exception{
-		List<Guest> guestlist = new ArrayList<Guest>();
-		guestlist.add(new Guest(1, null, null, null, null, null, null));
-		guestlist.add(new Guest(2, null, null, null, null, null, null));
-		given(guestService.selectAll()).willReturn(guestlist);
+		List<Guest> guestList=new ArrayList<Guest>();
+		guestList.add(new Guest(1, null, null, null, null, null, null));
+		guestList.add(new Guest(2, null, null, null, null, null, null));
 		
-		mockMvc.perform(get("/guest_list"))
+		given(guestService.selectAll()).willReturn(guestList); //가정
+		
+		mockMvc.perform(get("/guest_list")) //검증
 		.andExpect(status().isOk())
 		.andExpect(forwardedUrl("/WEB-INF/views/guest_list.jsp"))
 		.andDo(print());
+		
+		// static import --> ctrl + shitft +o
 		
 		verify(guestService).selectAll();
 		
 	}
 
-	//@Test
-	void testGuest_viewIntModel() {
-		//fail("Not yet implemented");
+	@Test
+	void testGuest_viewIntModel() throws Exception {
+		given(guestService.selectByNo(1)).willReturn(new Guest(1, null, null, null, null, null, null));
+		mockMvc.perform(get("/guest_view").param("guest_no", "1"))
+			   .andExpect(status().isOk()) //검증의 시작
+			   .andExpect(model().attributeExists("guest"))
+			   .andExpect(forwardedUrl("/WEB-INF/views/guest_view.jsp"))
+			   .andDo(print());
+		
+		verify(guestService).selectByNo(1);
 	}
 
 }
