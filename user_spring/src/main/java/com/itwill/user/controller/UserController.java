@@ -89,7 +89,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user_view")
-	public String user_view(HttpServletRequest request) throws Exception {
+	public String user_view(HttpServletRequest request) throws Exception { //request만 써서 처리함
 		String forwardPath="";
 		/************** login check **************/
 		String loginUser = (String)request.getSession().getAttribute("sUserId");
