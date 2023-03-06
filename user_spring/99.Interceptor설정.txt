@@ -1,15 +1,10 @@
 
 ① HandlerInterceptor 인터페이스,HandlerInterceptorAdapter 추상클래스구현
 	
-	public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
+	public class AuthLoginInterceptor implements HandlerInterceptorAdapter {
 		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {}
-		@Override
-		public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-				ModelAndView modelAndView) throws Exception {}
-		@Override
-		public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-				throws Exception {}	
+		
 	}
 	
 

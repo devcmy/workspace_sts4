@@ -142,7 +142,9 @@ public class UserController {
 			return "redirect:user_main";
 		}
 		/****************************************/
-		
+		userService.remove(loginUser);
+		request.getSession().invalidate();
+		forwardPath="redirect:user_main";
 		return forwardPath;
 	}
 	@RequestMapping("/user_logout_action")
