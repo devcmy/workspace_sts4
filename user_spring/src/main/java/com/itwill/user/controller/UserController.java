@@ -90,15 +90,15 @@ public class UserController {
 	
 	@LoginCheck
 	@RequestMapping("/user_view")
-	public String user_view(HttpServletRequest request) throws Exception { //request만 써서 처리함
-		String forwardPath="";
+	public String user_view(HttpServletRequest request) throws Exception {
+		String forwardPath = "";
 		/************** login check **************/
-		
 		/****************************************/
-		String loginUser = (String)request.getSession().getAttribute("loginUser");
-		User loginUserS = userService.findUser(loginUser);
-		request.setAttribute("loginUser",loginUserS);
-		forwardPath = "user_view";
+		String sUserId =(String)request.getSession().getAttribute("sUserId");
+		User loginUser=userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+		forwardPath="user_view";
+		
 		return forwardPath;
 	}
 	@LoginCheck
