@@ -7,6 +7,30 @@
 <body>
 	<h1 th:text="'th헤드라인'"> 헤드라인</h1>
 	아이디 : <input type="text" value="guard" th:value="'가'+'아'+'드'">
-
+	
+	<div>
+		<span th:if="${false}">여자</span>
+		<span th:if="${true}">남자</span>
+	</div>
+	<!-- 똑같은 조건일때, if-else문 -->
+	<div>
+		<span th:if="${true}">여자</span>
+		<span th:unless="${true}">남자</span>
+	</div>
+	
+	<!-- block을 출력할지,말지 if문 -->
+	<th:block th:if="${true}">
+		<div>참인경우 출력</div>
+	</th:block>
+ <!-- unless의 값이 참인 경우 출력함(false) true면 출력안함 -->
+	<th:block th:unless="${false}">
+		<div>참인경우 출력</div>
+	</th:block>
+	
+	
+	
+	
+	
+	
 </body>
 </html>
