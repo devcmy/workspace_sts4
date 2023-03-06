@@ -10,6 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 /*
 ①HandlerInterceptor 인터페이스
 ②HandlerInterceptorAdapter 추상클래스
+
 	- public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler)
      	Controller 요청 전 실행
 	
@@ -37,10 +38,10 @@ public class AuthLoginAnnotationInterceptor implements HandlerInterceptor {
 			HandlerMethod는 그 자체가 실행가능한 객체가 아니라 메소드를 실행하기 위해 필요한 
 			참조정보를 담고 있는 객체 로써 다음과 같은 정보들을 가지고 있다.
 				- @Controller가붙은 컨트롤러 빈정보
-				- @RequestMapping이 붙은 메소드 메타정보
-				- @RequestMapping이 붙은 메소드 파라미터 메타정보
-				- @RequestMapping이 붙은 메소드 어노테이션 메타정보
-				- @RequestMapping이 붙은 메소드 리턴 값 메타정보
+				- @RequestMapping[@GetMapping, @PostMapping]이 붙은 메소드 메타정보
+				- @RequestMapping[@GetMapping, @PostMapping]이 붙은 메소드 파라미터 메타정보
+				- @RequestMapping[@GetMapping, @PostMapping]이 붙은 메소드 어노테이션 메타정보
+				- @RequestMapping[@GetMapping, @PostMapping]이 붙은 메소드 리턴 값 메타정보
  
 			디스패처 서블릿은 애플리케이션이 실행될 때 모든 컨트롤러 빈의 메소드를 살펴서 
 			매핑 후보가 되는 메소드들을 추출한 뒤, 이를 HandlerMethod 형태로 저장해둔다. 
@@ -56,29 +57,29 @@ public class AuthLoginAnnotationInterceptor implements HandlerInterceptor {
 			/*
 			 * @ Controller객체에 @RequestMapping이 붙은메쏘드 :  HandlerMethod
 			 */
-			//return true이면 그대로 컨트롤러로 진행
+			//return true이면 그대로 컨트롤러로 진행 //핸들러메소드가 아니면 컨트롤러로 감
 			return true;
 		}
 		
 		/*********************************
 		 2.HandlerMethod 타입으로 형 변환
 		 ********************************/
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		HandlerMethod handlerMethod = (HandlerMethod) handler; //객체를 꺼내서 알아보기(너가 호출을 할 애인지? 아닌지?)	//핸들러메소드안에는 @annotation이 붙어있는지, 아닌지 확인함
 		
 		/***************************
-		 3.HandlerMethod객체 로부터 @LoginCheck 어노테이션 객체얻기
+		 3.HandlerMethod객체 로부터 @LoginCheck 어노테이션 객체얻기 있으면 체크하겟다.
 		***************************/
-		//LoginCheck loginCheck = handlerMethod.getMethodAnnotation(LoginCheck.class);
+		LoginCheck loginCheck = handlerMethod.getMethodAnnotation(LoginCheck.class);
 		/***************************
-		4. HandlerMethod객체에 @LoginCheck어노테이션 이없는 경우, 
+		4. HandlerMethod객체에 @LoginCheck어노테이션 이없는 경우, (원래 요청하던 대로)가던길 가라~
 		   즉 인증이 필요 없는 요청
 		***************************/
-//		if (loginCheck == null) {
-//			System.out.println("### AuthLoginAnnotationInterceptor.preHandle()메써드 @LoginCheck 없는경우");
-//			return true;
-//		}
+		if (loginCheck == null) {
+			System.out.println("### AuthLoginAnnotationInterceptor.preHandle()메써드 @LoginCheck 없는경우");
+			return true;
+		}
 		/***************************
-		4. HandlerMethod객체에 @LoginCheck어노테이션 이있는 경우, 
+		4. HandlerMethod객체에 @LoginCheck어노테이션 이있는 경우, (@로그인체크 붙어있으면 확인) 
 		   세션이 있는지 체크
 		***************************/
 		System.out.println("### AuthLoginAnnotationInterceptor.preHandle()메써드 @LoginCheck있 는경우");
@@ -86,14 +87,14 @@ public class AuthLoginAnnotationInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		//login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
 		String sUserId = (String) session.getAttribute("sUserId");
-		if (sUserId == null) {
+		if (sUserId == null) { 
 			// 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
 			response.sendRedirect("user_main");
 			return false; // 더이상 컨트롤러 요청으로 가지 않도록 false로 반환함
 		}
 		// preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
 		// 따라서 true로하면 컨트롤러 uri로 가게 됨.
-		return true;
+		return true; // sUserId가 있으면 원래 있는대로 가게됨
 	}
 
 	
