@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.itwill.user.controller.AuthLoginAnnotationInterceptor;
 import com.itwill.user.controller.AuthLoginInterceptor;
 
 @Configuration
@@ -28,10 +29,11 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	
 	/*
-	 * 사용자 정의 필터 등록(사용자 정의 아닌것도 등록가능)
+	 * 사용자 정의 인터셉터 등록(사용자 정의 아닌것도 등록가능)
 	 */
 	@Override //인터셉터 등록
 	public void addInterceptors(InterceptorRegistry registry) {
+		/*
 		AuthLoginInterceptor authLoginInterceptor = new AuthLoginInterceptor();
 		registry.addInterceptor(authLoginInterceptor)       //mock테스트마냥
 		.addPathPatterns("/**") //전체등록
@@ -43,6 +45,14 @@ public class WebConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/user_login_action")
 		.excludePathPatterns("/user_write_form")
 		.excludePathPatterns("/user_write_Action"); 
+		*/
+		AuthLoginAnnotationInterceptor annotationInterceptor = new AuthLoginAnnotationInterceptor();
+		registry.addInterceptor(annotationInterceptor)
+		.addPathPatterns("/**") //전체등록
+		.excludePathPatterns("/css/**") //제외하는 작업
+		.excludePathPatterns("/js/**")
+		.excludePathPatterns("/image/**");
+		
 	}
 	/*************************************************************/
 	
