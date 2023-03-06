@@ -107,7 +107,7 @@ public class UserController {
 		/************** login check **************/
 		/****************************************/
 		
-		String loginUser = (String)request.getSession().getAttribute("loginUser");
+		String loginUser = (String)request.getSession().getAttribute("sUserId");
 		model.addAttribute("loginUser",userService.findUser(loginUser));
 		String forwardPath = "user_modify_form";
 
@@ -130,7 +130,7 @@ public class UserController {
 		String forwardPath = "";
 		/************** login check **************/
 		/****************************************/
-		String loginUser = (String)request.getSession().getAttribute("loginUser");
+		String loginUser = (String)request.getSession().getAttribute("sUserId");
 		userService.remove(loginUser);
 		request.getSession().invalidate();
 		forwardPath="redirect:user_main";
