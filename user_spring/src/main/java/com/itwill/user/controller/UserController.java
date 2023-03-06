@@ -88,77 +88,61 @@ public class UserController {
 		return forwardPath;
 	}
 	
+	@LoginCheck
 	@RequestMapping("/user_view")
 	public String user_view(HttpServletRequest request) throws Exception { //request만 써서 처리함
 		String forwardPath="";
 		/************** login check **************/
-		String loginUser = (String)request.getSession().getAttribute("sUserId");
-		if(loginUser==null) {
-			return "redirect:user_main";
-		}
-		/****************************************/
 		
+		/****************************************/
+		String loginUser = (String)request.getSession().getAttribute("loginUser");
 		User loginUserS = userService.findUser(loginUser);
 		request.setAttribute("loginUser",loginUserS);
 		forwardPath = "user_view";
 		return forwardPath;
 	}
-
+	@LoginCheck
 	@RequestMapping("/user_modify_form")
 	public String user_modify_form_post(HttpServletRequest request, Model model) throws Exception {
 		/************** login check **************/
-		String loginUser = (String)request.getSession().getAttribute("sUserId");
-		if(loginUser==null) {
-			return "redirect:user_main";
-		}
 		/****************************************/
 		
-		
+		String loginUser = (String)request.getSession().getAttribute("loginUser");
 		model.addAttribute("loginUser",userService.findUser(loginUser));
 		String forwardPath = "user_modify_form";
 
 		return forwardPath;
 	}
+	@LoginCheck
 	@RequestMapping("/user_modify_action")
 	public String user_modify_action_post(HttpServletRequest request, User user) throws Exception {
 		String forwardPath = "";
 		/************** login check **************/
-		String loginUser = (String)request.getSession().getAttribute("sUserId");
-		if(loginUser==null) {
-			return "redirect:user_main";
-		}
 		/****************************************/
 		
 		userService.update(user); //session의 data를 쓰기 때문에, (jsp로) 넘기지 않는다.
 		forwardPath = "redirect:user_view";
 		return forwardPath;
 	}
+	@LoginCheck
 	@RequestMapping("/user_remove_action")
 	public String user_remove_action_post(HttpSession session, HttpServletRequest request, Model model) throws Exception {
 		String forwardPath = "";
 		/************** login check **************/
-		String loginUser = (String)request.getSession().getAttribute("sUserId");
-		if(loginUser==null) {
-			return "redirect:user_main";
-		}
 		/****************************************/
+		String loginUser = (String)request.getSession().getAttribute("loginUser");
 		userService.remove(loginUser);
 		request.getSession().invalidate();
 		forwardPath="redirect:user_main";
 		return forwardPath;
 	}
+	@LoginCheck
 	@RequestMapping("/user_logout_action")
 	public String user_logout_action(HttpServletRequest request, HttpSession session) {
 		String forwardPath = "";
 		/************** login check **************/
-		String loginUser = (String)request.getSession().getAttribute("sUserId");
-		if(loginUser==null) {
-			return "redirect:user_main";
-		}
-		request.getSession().invalidate(); //request.getSession(true) 라면,현재 세션을 반환하거나, 현재 세션이 없으면 새로운 세션을 생성하도록 지시합니다.
-		//session.invalidate();
-		forwardPath = "redirect:user_main";
 		/****************************************/
+		request.getSession(false).invalidate();
 		return forwardPath;
 	}
 	/**************** GET방식들어오면 USER_MAIN REDIRECTION *********/
