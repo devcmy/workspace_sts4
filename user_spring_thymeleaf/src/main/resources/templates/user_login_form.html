@@ -1,9 +1,3 @@
-
-     
-
-
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -57,7 +51,7 @@
 			<!-- include_common_left.jsp start-->
 
 			<!-- include_common_left.jsp end-->
-		</div>
+	
 		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
@@ -83,13 +77,15 @@
 											아이디</td>
 										<td width=490 align="left" bgcolor="ffffff"
 											style="padding-left: 10px"><input type="text"
-											style="width: 150" name="userId" value="">&nbsp;&nbsp;<font color="red"></font></td>
+											style="width: 150" name="userId" value="">
+											&nbsp;&nbsp;<font color="red" th:text="${msg1}"></font></td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">비밀번호</td>
 										<td width=490 align="left" bgcolor="ffffff"
 											style="padding-left: 10px"><input type="password"
-											style="width: 150" name="password" value="">&nbsp;&nbsp;<font color="red"></font></td>
+											style="width: 150" name="password" value="">
+											&nbsp;&nbsp;<font color="red" th:text="${msg2}"></font></td>
 									</tr>
 								</table>
 							</form> <br />
