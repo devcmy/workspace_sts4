@@ -89,15 +89,17 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user_view")
-	public String user_view(User user, HttpSession session, HttpServletRequest request, Model model) throws Exception {
+	public String user_view(HttpServletRequest request) throws Exception {
+		String forwardPath="";
 		/************** login check **************/
-		session = request.getSession();
-		String loginUser = (String)session.getAttribute("sUserId");
+		String loginUser = (String)request.getSession().getAttribute("sUserId");
+		if(loginUser==null) {
+			return "redirect:user_main";
+		}
 		
-		
-		model.addAttribute("loginUser",userService.findUser(loginUser));
-		
-		String forwardPath = "user_view";
+		User loginUserS = userService.findUser(loginUser);
+		request.setAttribute("loginUser",loginUserS);
+		forwardPath = "user_view";
 		return forwardPath;
 	}
 
