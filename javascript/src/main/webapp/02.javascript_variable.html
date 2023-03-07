@@ -5,8 +5,14 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	/*
-		변수,상수,리터럴
+		변수, 리터럴
 	*/
+	
+	let a1 ='text1';
+	let a2 ="text2";
+	let b = 123;
+	let c = 12.456;
+	let d = true;
 	
 	/*
 	전역에 선언된 var변수는 윈도우 속성으로 생성
@@ -16,7 +22,27 @@
 	전역에 선언된 let변수는 중복선언되면 에러발생안함
 	*/
 	
+	/*
+	상수
+	*/
 	
+	const e = '상수1';
+	const f = 789;
+	//e = '상수1변경'; //변수 사용하면 예기치못한 상황발생할수 있어서, 상수 많이 쓴다.
+	//TypeError: Assignment to constant variable.(상수에 갑 변경시 에러)
+	
+	console.log(a1);
+	console.log(a2);
+	console.log(b);
+	console.log(c);
+	console.log(d);
+	console.log(e);
+	console.log(f);
+	
+	let g=null;
+	let h;
+	console.log(g);
+	console.log(h);
 	
 	
 
