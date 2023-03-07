@@ -29,15 +29,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+
+	/* 일급함수
+		일급함수(First-class function)는 프로그래밍 언어에서 함수를 값으로 취급하는 것을 의미합니다. 
+		즉, 함수를 변수에 할당하거나, 함수를 다른 함수의 인자로 전달하거나, 
+		함수를 다른 함수의 반환값으로 사용할 수 있는 것을 말합니다.	
+		함수가 다른 값들과 동등한 지위를 갖게 됩니다. 즉, 대입과 리턴이 가능
+	*/
+		
 	
 	/*
-	A.선언적함수
+	A.선언적함수 선언
 	*/
+	function func1(){
+		let localVar='#func1() local변수값';
+		document.write('func1()내부에서 실행:localVar='+localVar+"<br>");
+		return;
+	}
+	
+	function func2(msg){
+		document.write('func2(msg)실행-->local변수 msg:'+msg+"<br>");
+		return;
+	}
 	
 	
 	/*
 	1.함수를 변수에 대입
 	*/
+	
+	let func3Var=function fun3(){          //일급함수도 대입이 가능
+		document.write("func3()실행<br>");
+	}
+	
 	
 	/*
 	2.함수를 인자로 대입
@@ -56,10 +79,21 @@
 	A.선언적함수호출
 	*/
 	
+	window.func1();
+	window.func2('#인자1');
+	
+	/*
+	Uncaught ReferenceError: localVar,msg is not defined
+	console.log(localVar);
+	console.log(msg);
+	*/
 	
 	/*
 	1.변수에대입한 함수를 호출
 	*/
+	
+	func3Var();
+	
 	
 	/*
 	2.함수호출시[func5] 함수객체[arg_func5]를 인자로 대입

@@ -117,7 +117,7 @@
 		console.log("1. h는 undefined 입니다.")
 	}
 	
-	if( typeof h  == 'undefined'){ //typeof -> type을 반환
+	if( typeof h  == 'undefined'){ //typeof -> type을 문자열 형태로 반환
 		console.log("2. h는 undefined 입니다. ")
 	}
 	
@@ -126,11 +126,30 @@
 		console.log(' g는 null 값을 가진다.');
 	}
 	
+	console.log('--------------type of----------------');
+	
+	console.log(typeof a1);
+	console.log(typeof a2);
+	console.log(typeof b);
+	console.log(typeof c);
+	console.log(typeof d);
+	console.log(typeof e);
+	console.log(typeof f);
+	console.log(typeof g);
+	console.log(typeof h);
+	console.log(typeof array1);
+	console.log(typeof array2);
+	
+
 	
 	
 	console.log("-------------- let 로선언된변수 재선언 ------------");
 	
+	//let a1=1213; Identifier 'a1' has already been declared 
+	
 	console.log("-------------- const 로선언된변수 재선언 ------------");
+	
+	//let e = false; Identifier 'e' has already been declared
 	
 </script>
 </head>

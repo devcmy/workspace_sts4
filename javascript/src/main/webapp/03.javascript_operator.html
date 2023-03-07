@@ -8,14 +8,108 @@
 <h1>javascript operator</h1><hr>
 <script type="text/javascript">
 	
+	console.log('------- === ------'); //값과 타입이 일치하는지?
+	
+	let str1='KIM';
+	let str2= new String('KIM');
+	let str3= new String('KIM');
+	let str4=str3;
+	console.log(typeof str1); //string
+	console.log(typeof str2); //object
+	
+	if(str1==str2){
+		console.log(' str1 str2 값이 일치 =='); //->
+	}
+	if(str1===str2){
+		console.log(' str1 str2 참조변수 동일'); //false이다 -> 같은 객체 비교, 같은 값 비교할때도 === 3개로 비교할것!
+	}else {
+		console.log(' str1 str2 참조변수 동일 안함');
+	}
+
+	if(str2===str3){
+		console.log('str2 str3 참조변수 동일'); //false이다 -> 같은 객체 비교, 같은 값 비교할때도 === 3개로 비교할것!
+	}else {
+		console.log('str2 str3 참조변수 동일 안함');
+	}
+
+	if(str3===str4){
+		console.log('str3 str4 참조변수 동일'); //false이다 -> 같은 객체 비교, 같은 값 비교할때도 === 3개로 비교할것!
+	}else {
+		console.log('str3 str4 참조변수 동일 안함');
+	}
 	
 	console.log('-------3항연산자------');
+	let a=12;
+	let b=20;
 	
+	//a ? b : c
+	
+	let result1 = (a > b)? a : b; //true면 a 반환, false 면 b 반환
+	console.log('result1:',result1);
+	
+	let result2;
+	(a>b)? result2=a : result2=b; //true면 result2=a반환, false면 result2=b반환
+	
+	console.log('result2:',result2);
+	
+	let level=67;
+	let msg = level>0 ? '양수' : '음수';
+	console.log('msg:',msg);
+	
+	
+	
+	
+	 
 	
 	console.log('-------------논리형타입으로자동변경------------');
-	//falsy한값
+	//falsy한값(거짓) -> false로 판단
+	
+	let zeroNumber=0;
+	let nullValue=null;
+	let emptyStr='';
+	let undefinedVar;
+	if(!zeroNumber){
+		console.log(zeroNumber,"-->",false);
+	}
+	if(!nullValue){
+		console.log(nullValue,"-->",false);
+		
+	}
+	if(!emptyStr){
+		console.log(emptyStr,"-->",false);
+		
+	}
+	if(!undefinedVar){
+		console.log(undefinedVar,"-->",false);
+		
+	}
+	
+	//->나머지는 true로 판단
+	
+	
+	//truthy(모든 데이터) 
+	let zeroNumberStr='0';
+	let boolStr='false';
+	let spaceStr=' ';
+	let number=1232323;
+	let str='거짓';
+	
+	if(zeroNumberStr)
+		console.log(zeroNumberStr,'-->',true);
+	if(boolStr)
+		console.log(boolStr,'-->',true);
+	if(spaceStr)
+		console.log(spaceStr,'-->',true);
+	if(number)
+		console.log(number,'-->',true);
+	if(str)
+		console.log(str,'-->',true);
 
-	//truthy
+	
+	console.log(!34);
+	if(34){
+		console.log(34,'--->',true);
+	}
 	
 	
 	
