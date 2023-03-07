@@ -22,7 +22,10 @@ public class User {
 	private String email;
 
 	public User() {
-		// TODO Auto-generated constructor stub
+		this.userId="";
+		this.password="";
+		this.name="";
+		this.email="";
 	}
 
 	public User(String userId, String password, String name, String email) {

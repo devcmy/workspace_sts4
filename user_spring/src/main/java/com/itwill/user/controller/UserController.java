@@ -144,6 +144,7 @@ public class UserController {
 		/************** login check **************/
 		/****************************************/
 		request.getSession(false).invalidate();
+		forwardPath="redirect:user_main";
 		return forwardPath;
 	}
 	/**************** GET방식들어오면 USER_MAIN REDIRECTION *********/
