@@ -10,17 +10,47 @@
     2. function객체를 파라메타데이타로사용
     3. function객체를 반환
      */
-    /*********인자로 대입할함수(변수)****************/
+    /*********인자로 대입할함수(변수)-> 잘 선언하지는 않는다.****************/
    
-    /****함수(익명함수)를 인자로받아서실행할함수***/
+    function arg_func1(){
+    	document.write("## arg_func1()실행<br>");
+    }
     
-	//인자로대입된함수를 실행
+    function arg_func2(){
+    	document.write("## arg_func2()실행<br>");
+    }
+    
+    
+    
+    /****함수(익명함수)를 인자로받아서실행할함수***/
+    function fun3(funcArg){
+    	document.write("## fun3(funcArg)실행<br>");
+		//인자로대입된함수를 실행
+    	funcArg();
+    }
+    function fun4(funcArg1, funcArg2){
+    	document.write("## fun4(funcArg1, funcArg2)실행<br>");
+		//인자로대입된함수를 실행
+    	funcArg1();
+		funcArg2();
+    }
+    
+    
+    
 	
     
     
-    /***********kQuery.js************
+    /***********kQuery.js(라이브러리)*************/
+    function hello(name,funcArg){
+    	document.write(">>> kQuery --> hello(name,funcArg)실행<br>");
+    	let msg=name+" 님 안녕하세여~<br>";
+    	funcArg(msg); //코드를 실행해줌
+    }
     
-     */
+    
+    
+    
+    
 </script>
 </head>
 <body>
@@ -31,17 +61,30 @@
 	<<javascript api document>
 	https://www.w3schools.com
 	 */
-	document	.write('---------------1.함수를인자로대입--------------------------------<br>');
 	
-	document.write('---------------2.익명함수대입된 함수형변수 대입------------------<br>');
+	document.write('---------------1.함수를인자로대입--------------------------------<br>');
+	fun3(arg_func1); //fun3(arg_func1())로 호출 하면 안됨
+	fun4(arg_func1,arg_func2);
+	document.write('---------------2.익명함수대입------------------------------------<br>');
+	fun3(function(){
+		document.write("### func3(funcArg)에 인자로 대입한 익명함수<br>");
+	});
 	
 	
+	fun4(function(){
+		document.write("### func4(funcArg1,funcArg2)에 첫번째 인자로 대입한 익명함수<br>");
+	},function(){
+		document.write("### func4(funcArg1,funcArg2)에 두번째 인자로 대입한 익명함수<br>");
+	});
 	
-	document	.write('---------------3.익명함수대입------------------------------------<br>');
+	document.write('---------------kQuery에서 제공하는 function사용----------------<br>');
+	
+	hello("김경호",function(msg){
+		document.write("### 인자로 대입한 익명함수실행<br>");
+		document.write("### hello function에서 익명함수실행시 대입한 인자 msg(를 가져다가 씀):"+msg+"<br>"); //내 함수의 특정인자를 넣어서, 라이브러리가 호출해주고, 접근할수 없는 데이터를 쓴다는 것
+	});
 	
 	
-
-	document	.write('---------------kQuery에서 제공하는 function사용----------------<br>');
 	
 	
     </script>
