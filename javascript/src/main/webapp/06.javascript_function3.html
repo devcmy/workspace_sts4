@@ -24,16 +24,42 @@
     		document.write("inner_function1-->outer1_var:"+outer1_var+"<br>");
     		document.write("inner_function1-->outer1_var:"+inner1_var+"<br>");
     	} //함수끝나면 inner1_var 변수가 사라짐 
+    	
+    	
+    	
     	document.write("-------------------outer_function1에서 inner_function1호출시작----------<br>");
 		inner_function1();
     	document.write("-------------------outer_function1에서 inner_function1호출끝----------<br>");
     	
-    	document.write("outer_function1--> outer_var1:"+outer1_var);
-    	document.write("outer_function1--> inner_var1:(존재안함)"+inner1_var); //고로 에러 발생함
+    	document.write("outer_function1--> outer_var1:"+outer1_var+"<br>");
+    	document.write("outer_function1--> inner_var1:(존재안함)<br>"); //고로 에러 발생함
+    	
+    	return inner_function1;
     }	
 	
+    function outer_function2(){ //얘를 실행하면, 아래의 return function()을 바로 반환한다.
+    	let outer2_var="outer2 var value";
+    	
+    	return function(){
+    		let inner2_var="inner2 var value";
+    		document.write("익명 inner_function2--> outer2_var:"+outer2_var+"<br>"); //이게 나오는게 의미가 있는것이다~
+    		document.write("익명 inner_function2--> inner2_var:"+inner2_var+"<br>");
+    	}
+    }
     
-
+    function outer_function4(a,b){
+    	let c = a+b;
+    	return function(){
+    		document.write("익명 inner_function4()-->a:"+a+"<br>");
+    		document.write("익명 inner_function4()-->b:"+b+"<br>");
+    		document.write("익명 inner_function4()-->c:"+c+"<br>");
+    	}
+    	
+    }
+    
+    
+    
+	
     
 
     
@@ -45,15 +71,28 @@
 	<hr />
 	<script type="text/javascript">
 		document.write('######################outer_function1()호출 시작##################<br>');
-		document	.write('######################outer_function1()호출  끝##################<br>');
-		document	.write('######################반환받은 inner_function1()호출 시작##################<br>');
-		document	.write('######################반환받은 inner_function1()호출   끝##################<br>');
-		document	.write('######################반환받은 inner_function2()호출 시작##################<br>');
-		document	.write('######################반환받은 inner_function2()호출   끝##################<br>');
-		document	.write('######################반환받은 inner_function3()호출 시작##################<br>');
-		document	.write('######################반환받은 inner_function3()호출   끝##################<br>');
-		document	.write('######################반환받은 inner_function4()호출  시작##################<br>');
-		document	.write('######################반환받은 inner_function4()호출    끝##################<br>');
+		let returnInnerFunction1= outer_function1();
+		document.write('######################outer_function1()호출  끝##################<br>');
+		document.write('######################반환받은 inner_function1()호출 시작##################<br>');
+		returnInnerFunction1();
+		document.write('######################반환받은 inner_function1()호출   끝##################<br>');
+	
+		
+		
+		document.write('######################반환받은 inner_function2()호출 시작##################<br>');
+		let returnInnerFunction2 = outer_function2();
+		returnInnerFunction2();
+		document.write('######################반환받은 inner_function2()호출   끝##################<br>');
+		
+		document.write('######################반환받은 inner_function3()호출 시작##################<br>');
+		document.write('######################반환받은 inner_function3()호출   끝##################<br>');
+		
+		document.write('######################반환받은 inner_function4()호출  시작##################<br>');
+		outer_function4(100,200)();
+		let returnInnerFunction4 = outer_function4(300,400);
+		returnInnerFunction4();
+		returnInnerFunction4();
+		document.write('######################반환받은 inner_function4()호출    끝##################<br>');
     </script>
 </body>
 </html>
