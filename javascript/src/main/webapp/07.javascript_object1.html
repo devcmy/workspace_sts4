@@ -14,33 +14,93 @@
 		2. 생성자함수
 		  - new Object(),new Array()
 	*/
-	/********************Object[JSON]********************/
+	/********************Object[JSON]********************/ //toString을 밖에서 만들면 window소속
+	let studentObject1={
+	    		  id:'aaa',
+	    		  name:'김태희',
+	    		  weight:56.3,
+	    		  married:true,
+	    		  toString:function(){
+	    			  return "["+this.id+"]"+this.name+this.weight+this.married;
+	    		  }
+	      };
 	
-	
-	/***** 멤버(프로퍼티) 동적추가*******/
-	
-	
+	/***** 멤버(프로퍼티) 동적으로 추가*******/
+	studentObject1.age=34;
+	studentObject1.address='서울';
+	studentObject1.setWeight=function(weight){
+		this.weight=weight;
+		
+	}; 
+	//.setWeight=45; 이러면 setWeight 멤버필드가 만들어짐 -> =function(weight){}를쓰면, 값 넣어줄수있다.
 	
 	document.write("-------------studentObject1출력--------------<br>");
+	document.write(studentObject1.id+"<br>");
+	document.write(studentObject1.name+"<br>");
+	document.write(studentObject1.weight+"<br>");
+	studentObject1.setWeight(56.89);
+	document.write(studentObject1.weight+"<br>");
+	document.write(studentObject1.married+"<br>");
+	document.write(studentObject1.toString()+"<br>"); //호출이 가능
+	
+	
 	
 	/********************Object[생성자함수]********************/
+	let studentObject2 = new Object();
+	studentObject2.id='bbb';
+	studentObject2.name='정지훈';
+	studentObject2.weight=80;
+	studentObject2.age=38;
+	studentObject2.address='서울';
+	studentObject2.setWeight=function(weight){
+		this.weight=weight;
+	}; 
 	
+	studentObject2.toString=function(){ //대입연산자의 왼쪽은 있으면 덮어지고, 없으면 생성된다.
+		  return "["+this.id+"]"+this.name+this.weight+this.married;
+	  };
 	/*******멤버(프로퍼티)동적추가********/
 	
 	
 	
 	document.write("-------------studentObject2출력--------------<br>");
+	document.write(studentObject2.id+"<br>");
+	document.write(studentObject2.name+"<br>");
+	document.write(studentObject2.weight+"<br>");
+	studentObject2.setWeight(90.99);
+	document.write(studentObject2.weight+"<br>");
+	document.write(studentObject2.married+"<br>");
+	document.write(studentObject2.toString()+"<br>"); //호출이 가능
 	
-	/********************Array[JSON]**************************
+	/********************Array[JSON]**************************/ 
+	//-> json으로 달라~ (spring의 rest controller로 출력해줘)
+	
 	let idArray=['aaa','bbb','ccc'];
 	let nameArray=['kim','lee','park'];
 	let ageArray=[34,23,45];
 	let studentObjectArray=[studentObject1,studentObject2];
-	*******************Array[생성자함수]*******************/
+
+	//let studentObjectArray=[{},{}]; json방식
+
+
+	
+	
+	/*******************Array[생성자함수]*******************/
 	
 	document.write('--------------------Array출력----------------------<br>');
 	
+	for(let i=0;i<idArray.length;i++){
+		document.write(idArray[i]+"<br>");
+	}
+	
+	
 	document.write('--------------------Array출력[Object]----------------------<br>');
+	
+	for(let i=0;i<studentObjectArray.length;i++){
+		document.write(studentObjectArray[i].toString()+"<br>");
+	}
+	
+	
 	
 </script>
 </body>
