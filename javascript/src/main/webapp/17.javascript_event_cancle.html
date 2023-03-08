@@ -5,32 +5,64 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	
-	
+	window.addEventListener('load',function(){
 		/*
+		load 시에 등록하고, 등록할때 실행할 이벤트를 익명 function으로 집어넣는다
+		
+		
 		window.onload 이벤트발생시점
 		   - DOM Tree 생성직후 렌더링전에호출
 		 */
 		/*******이벤트등록*********/
-		
+		document.getElementById('tweet')
+		.addEventListener('click',function(e){
+			alert('상세보기');
+			
+		}); //상세보기
+		document.getElementById('imageSpan').addEventListener('click',function(e){ //e는 이벤트 객체
+			alert('프로필보기');
+			e.stopPropagation();
+		}); //프로필보기
 	    	
-		/*
+   		document.getElementById("mainp").addEventListener('click',function(e){
+   			 alert('main.jsp로 페이지기반 요청');
+   			 
+   		});
+			/*
 	    	anchor클릭시
 	    	1.click event발생(o)
 	    	2.href에기술된 url로 page요청(o)
 	    	*/
-	   
-	    	/*
+	    	
+   	document.getElementById("maina").addEventListener('click',function(e){
+		alert('main.jsp로페이지기반요청취소');
+		/*
 	    	anchor클릭시
 	    	1.click event발생(o)
+		*/
+		e.preventDefault();
+		/*
 	    	2.href에기술된 url로 page요청취소( X )[e.preventDefault();]
 	    	*/
+	});
 	    	
-		  /*
+	    	
+	    	
+	    	
+	    	
+	    
+	    	document.getElementById("f")
+	    	.addEventListener('submit',function(e){
+		  	/*
 	    	submit버튼클릭시
 	    	1.submit event발생(o)
 	    	2.action 에기술된 url로 page요청( x )
 	    	*/
-	    
+	    		alert('submit버튼 클릭시 join.jsp로 페이지 요청취소');
+	    		console.log(e.target);
+		  		e.preventDefault();
+	    	});
+	    	
 	
 	    	
 	/*
@@ -39,6 +71,8 @@
 	document.getElementsByTagName();
 	document.getElementsByName();
 	 */
+	});
+		
 </script>
 </head>
 <body>
@@ -62,9 +96,9 @@
 
 	<h2>디폴트 이벤트 취소[e.preventDefault()](page요청취소)</h2>
 	1.anchor tag:
-	<a id="mainp" href='main.jsp'>메인페이지요청[페이지요청]</a>
+	<a id="mainp" href='main.jsp'>메인페이지요청[페이지요청]</a> <!-- click하고 href로 요청 -->
 	<br /> 2.anchor tag:
-	<a id="maina" href='main.jsp'>메인페이지요청[AJAX요청]</a>
+	<a id="maina" href='main.jsp'>메인페이지요청[AJAX요청_비동기요청]</a> <!-- main페이지로 요청이 들어가지 말아야한다. -->
 	<br />
 	<br />
 	<form id="f" name="f" action="join.jsp" method="get">

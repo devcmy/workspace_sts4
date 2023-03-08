@@ -6,19 +6,23 @@
 <script type="text/javascript">
 	function displayMessage(msg){
 	    var resultDivE=document.getElementById('result');
-		resultDivE.innerHTML += msg+"<br>";
+		resultDivE.innerHTML += msg+"<br>";    //누적
 	}
 	function inlineEventHandler(e){
-		
+		let msg = "inlineEventHandler-->이벤트 타겟:"+e.target+",이벤트 타입:"+e.type;
+		displayMessage(msg);
 	}
 	function button2EventHandler(e){
-	   
+		let msg = "button2EventHandler-->이벤트 타겟:"+e.target+",이벤트 타입:"+e.type;
+		displayMessage(msg);
 	}
 	function button3EventHandler1(e){
-	   
+		let msg = "button3EventHandler1[click]-->이벤트 타겟:"+e.target+",이벤트 타입:"+e.type;
+		displayMessage(msg);
 	}
 	function button3EventHandler2(e){
-	    
+		let msg = "button3EventHandler2[click]-->이벤트 타겟:"+e.target+",이벤트 타입:"+e.type;
+		displayMessage(msg);
 	}
 	
 	/*
@@ -26,18 +30,60 @@
 		1. body맨마직막
 		2. window.onload 이벤트발생시호출 
 	*/
-	function event_regist(){
+	function event_regist(){ //document에 dom tree가 완전 등록됫을때, 실행시키려고함
 		alert(' >>>> 실행시점 DOMTree로딩완료후 랜더링전시점에실행');
 		/*** DOM LEVEL - 0 ***/
-		
+		let button2E = document.getElementById("button2");
 		/*********CASE1*******/
-		
+		button2E.onclick=button2EventHandler; //button2이벤트핸들러의 결과가 들어가면안된다(호출해야함)
 		/*********CASE2******/
-		
+		button2E.onclick=function(e){
+			let msg = "button2EventHandler익명함수-->이벤트 타겟:"+e.target+",이벤트 타입:"+e.type;
+			displayMessage(msg);
+		} //익명함수를 만들어서 코드를 등록해라(그럼 window로 등록안됨)
 		/*
 		https://www.w3schools.com/
 		*/
 		/*** DOM LEVEL - 2 ***/
+		let button3E = document.getElementById("button3");
+		button3E.addEventListener('click',button3EventHandler1);
+		button3E.addEventListener('click',button3EventHandler2);
+		button3E.addEventListener('click',function(e){
+			let msg = "button3익명EventHandler1[click]-->이벤트 타겟:"+e.target+",이벤트 타입:"+e.type;
+			displayMessage(msg);
+		});
+		button3E.addEventListener('mouseover',function(e){
+			let msg = "button3익명EventHandler2[mouseover]-->이벤트 타겟:"+e.target+",이벤트 타입:"+e.type;
+			displayMessage(msg);
+		});
+		
+		let movie_rankOrderedListElement = document.getElementById('movie_rank');
+		let movie_rankListElementArray =movie_rankOrderedListElement.getElementsByTagName("li");
+		
+		for(let i=0;i<movie_rankListElementArray.length;i++){
+			movie_rankListElementArray[i].addEventListener('click',function(e){
+				let clickElement=e.target;
+				displayMessage('click한 영화:'+clickElement.innerHTML);
+				
+				if(clickElement.style.background=='gray'){
+					clickElement.style.background='white';
+					clickElement.style.color='black';
+				}else{
+					clickElement.style.background='gray';
+					clickElement.style.color='pink';
+				}
+				/*
+				clickElement.style.background='white';
+				clickElement.style.color='black';
+				
+				
+				clickElement.style.background='gray';
+				clickElement.style.color='pink';
+				*/
+				
+				
+			});
+		}
 		
 		
 		
@@ -46,7 +92,7 @@
 			element1.getElementById();
 			element1.getElementsByTagName();
 			
-			<< docuemnt 의 하위노드만검색[돔트리전체] >>
+			<< docuemnt 의 하위노드만검색[돔트리전체] -> 너무 광범위하다. (li)가 한두개인가? >>
 			document.getElementById();
 			document.getElementsByTagName();
 		*/
@@ -55,11 +101,20 @@
 		
 	};
 	/*
-	window.onload 이벤트발생시점
+	window.onload(이벤트 프로퍼티) 이벤트발생시점 (사용자행위에 의해서가 아닌, system 이벤트)
 	   - DOM Tree 생성직후 렌더링전에호출  이벤트등록
-	
+		***WINDOW객체에 PROPERTY나 FUNCTION등록하는것 XXXXX
 	*/
 	
+	window.onload=event_regist;//event_regist 호출하는것        event_regist() -> 호출의 결과값이 들어가면안된다.
+	window.onload=function(){ //익명function등록하고, event_regist()를 호출하는것
+		event_regist();
+	}
+ 	
+	
+	
+	//let button2E = document.getElementById('button2');
+	//console.log(button2E); //HEAD PARCING 해봣자, BODY의 DOMTREE가 만들어지지 않아서, CONSOLE에 NULL값이 뜬다.
 	
 </script>
 </head>
@@ -75,18 +130,18 @@
 	<input id="button4" name="button4" type="button" value="event remove"/>
 </form>
 <ol id='movie_rank'>
-	<li>조커</li>
-	<li>람보</li>
-	<li>AI</li>
-	<li>알라딘</li>
-	<li>체르노빌</li>
+	<li>인턴</li>
+	<li>신동사2</li>
+	<li>해리포터1</li>
+	<li>해리포터2</li>
+	<li>인터스텔라</li>
 </ol>
 <ol id='drama_rank'>
-	<li>도깨비</li>
-	<li>사랑과전쟁</li>
-	<li>나너</li>
-	<li>우리나라</li>
-	<li>대한민국</li>
+	<li>연애의발견</li>
+	<li>그해우리는</li>
+	<li>멜로가체질</li>
+	<li>런온</li>
+	<li>미스터션샤인</li>
 </ol>
 <div id="result">
 </div>
