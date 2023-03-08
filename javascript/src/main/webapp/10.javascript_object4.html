@@ -7,22 +7,68 @@
 	/*
 	생성자함수
 	*/
+	const o = new Object();
+	const stringObject = new String("문자열");
+	const numberObject = new Number(34);
+	const dateObject= new Date();
+	const arrayObject = new Array();
+	
+	//const studentObject = new Studnet();
 	
 	
 	/*
-	학생객체를 생성해서 반환해주는 <<< 생성자함수 >>> 작성
+	학생객체를 생성해서 반환해주는 <<< 생성자함수 >>> 작성 - 첫글자 대문자로 작성
 	*/
 	
-	/****************학생객체****************/
+	function Student(id,name,kor,eng,math){
+	/*
+	호출 new Student('xxx','KIM',10,20,30)
+		1.Object객체생성({json},new Object()) - new라고붙어서 호출
+		2.금방 생성된 Object객체(this)에 속성를 동적으로 추가
+		3. 생성된 Object객체 반환
+	*/	
+		this.id=id;
+		this.name=name;
+		this.kor=kor;
+		this.eng=eng;
+		this.math=math;
+		this.tot=0;
+		this.avg=0.0;
+		this.calculateTot=function(){
+			this.tot=this.kor+this.eng+this.math;
+		}
+		this.calculateAvg=function(){
+			this.avg=this.tot/3;
+		}
+		this.toString=function(){
+			return "["+this.id+"] "+this.name+","+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
+		}
+	}
 	
-
+	
+	
+	/****************학생객체****************/
+	/* 잘못사용 예시
+	window.Student('xxx','KIM',45,56,78); window생략가능
+	window.Student('yyy','JIN',60,70,80); 맨 마지막 데이터만 남아있음(앞의 'xxx' 날라감) -> 그래서 json으로 객체를 만들어서 반환해야한다.
+	*/
+	const studentObject1 = new Student('xxx','KIM',10,20,30);
+	const studentObject2 = new Student('yyy','LIM',45,56,68);
+	const studentObject3 = new Student('zzz','SIM',75,86,98);
+	const studentArray=[studentObject1,studentObject2,studentObject3];
+	
+	
 </script>
 </head>
 <body>
 <h1>생성자 함수3</h1><hr>
 <script type="text/javascript">
 	document.write('--------------student 리스트---------------------<br>');
-	
+	for(let i=0;i<studentArray.length;i++){
+		studentArray[i].calculateTot();
+		studentArray[i].calculateAvg();
+		document.write(studentArray[i].toString()+"<br>");
+	}
 </script>
 </body>
 </html>

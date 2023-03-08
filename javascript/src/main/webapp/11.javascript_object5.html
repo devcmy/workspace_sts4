@@ -3,28 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="Student.js"></script>
 <script type="text/javascript">
-    /*
-     생성자함수
-     */
-
-    
-
-    /*
-    학생객체를 생성해서 반환해주는 <<< 생성자함수 >>> 작성
-     */
-   
-
-    /************prototype[case 1]*****************
-    Student.prototype객체안에 instanace 메쏘드추가(모든 Student객체들이 사용하는 instance메쏘드)
-     - Student객체의메쏘드를 호출하면 Student.prototype객체안에서 메쏘드를 찾아서호출한다
-     
-    
-    **********************************************/
-    
-    /************prototype[JSON][case 2]***********/
-	
-    /****************학생객체****************/
+   /****************학생객체****************/
+	const studentObject1 = new Student('xxx','KIM', 34,23,67);
+	const studentObject2 = new Student('yyy','LEE', 34,23,67);
+	const studentObject3 = new Student('zzz','SIM', 34,23,67);
+	const studentArray=[studentObject1,studentObject2,studentObject3];
     
 </script>
 </head>
@@ -33,11 +18,14 @@
 	<hr>
 	<script type="text/javascript">
 	document.write('--------------student 리스트---------------------<br>');
-	
+	for(let i=0;i<studentArray.length;i++){
+		studentArray[i].calculateTot();
+		studentArray[i].calculateAvg();
+		document.write(studentArray[i].toString()+"<br>");
+	}
     </script>
 </body>
 </html>
-
 
 
 
