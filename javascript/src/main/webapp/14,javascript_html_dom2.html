@@ -11,7 +11,7 @@
 		<< Node생성기능 document객체만가지는 기능 >>
 		1.div Element(tag)
 		 */
-		
+		let newDivE = document.createElement('div');
 			/*
 			1-1.TextNode생성
 			 */
@@ -24,7 +24,10 @@
 		/*
 		2.DOM Tree에추가
 		 */
-	
+	var parentDivE = document.getElementById('parent');
+		 parentDivE.appendChild(newDivE);
+		 	
+		 
 	}
 	function remove() {
 	   
