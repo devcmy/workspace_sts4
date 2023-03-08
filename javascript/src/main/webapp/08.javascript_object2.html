@@ -14,6 +14,47 @@
 	JSON
 	*/
 	
+	const studentObject1={
+			id:"xxx",
+			name:'sim',
+			kor:47,
+			eng:89,
+			math:98,
+			tot:0,
+			avg:0.0,
+			calculateTot:function(){
+				this.tot=this.kor+this.eng+this.math;
+			}, //function property
+			calculateAvg:function(){
+				this.avg=this.tot/3;
+			},
+			toString:function(){
+				return "["+this.id+"]"+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
+			}
+	}
+	
+	
+	const studentObject2={
+			id:"yyy",
+			name:'fim',
+			kor:67,
+			eng:88,
+			math:12,
+			tot:0,
+			avg:0.0,
+			calculateTot:function(){
+				this.tot=this.kor+this.eng+this.math;
+			}, //function property
+			calculateAvg:function(){
+				this.avg=this.tot/3;
+			},
+			toString:function(){
+				return "["+this.id+"]"+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
+			}
+	}
+	
+	
+	
 </script>
 </head>
 <body>
