@@ -6,12 +6,43 @@
 <script type="text/javascript">
 	/*
 	생성자함수
+	var o = new Object();
 	*/
 	/*
-	학생객체를 생성해서 반환해주는 <<< 함수 >>> 작성
+	학생객체를 생성해서 반환해주는 <<< 함수 >>> 작성  (반복적인 작업을 함수로 만들어서, 학생객체를 반환해주는 "함수"를 만듦)
 	*/
-	
+	var name='김경호'; //->window.name으로 찍을수있다.(window 소속) 이걸 벗어나기 위해 let 사용한다.
 	/****************학생객체****************/
+	function createStudent(id,name,kor,eng,math){ //window에 소속된 함수
+		let studentObject={
+				id:id,
+				name:name,
+				kor:kor,
+				eng:eng,
+				math:math,
+				tot:0,
+				avg:0.0,
+				calculateTot:function(){
+					this.tot=this.kor+this.eng+this.math;
+				}, //function property
+				calculateAvg:function(){
+					this.avg=this.tot/3;
+				},
+				toString:function(){
+					return "["+this.id+"] "+this.name+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
+				}
+	};
+		return studentObject; //객체를 반환해주면된다.
+	}
+	
+	const studentObject1=createStudent('xxx','엑스맨',78,45,23);
+	const studentObject2=createStudent('yyy','침착맨',90,99,98);
+	const studentObject3=createStudent('zzz','이병건',45,67,91);
+	const studentArray=[studentObject1,studentObject2,studentObject3];
+	
+	
+	
+	
 	
 </script>
 </head>
@@ -19,6 +50,11 @@
 <h1>생성자 함수2</h1><hr>
 <script type="text/javascript">
 	document.write('--------------student 리스트---------------------<br>');
+	for(let i=0;i<studentArray.length;i++){
+		studentArray[i].calculateTot();
+		studentArray[i].calculateAvg();
+		document.write(studentArray[i].toString()+"<br>");
+	}
 	
 </script>
 </body>

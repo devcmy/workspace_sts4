@@ -11,7 +11,7 @@
 	
 	/****************학생객체3개****************/
 	/*
-	JSON
+	JSON으로 만듦
 	*/
 	
 	const studentObject1={
@@ -29,7 +29,7 @@
 				this.avg=this.tot/3;
 			},
 			toString:function(){
-				return "["+this.id+"]"+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
+				return "["+this.id+"] "+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
 			}
 	}
 	
@@ -49,7 +49,7 @@
 				this.avg=this.tot/3;
 			},
 			toString:function(){
-				return "["+this.id+"]"+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
+				return "["+this.id+"] "+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
 			}
 	}
 	
@@ -68,7 +68,7 @@
 				this.avg=this.tot/3;
 			},
 			toString:function(){
-				return "["+this.id+"]"+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
+				return "["+this.id+"] "+this.kor+","+this.eng+","+this.math+","+this.tot+","+this.avg;
 			}
 	}
 	
@@ -87,6 +87,7 @@
 		studentArray[i].calculateTot();
 		studentArray[i].calculateAvg();
 		document.write(studentArray[i].toString()+"<br>");
+		
 		
 	}
 </script>
