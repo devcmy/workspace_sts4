@@ -19,19 +19,23 @@
 			1. XMLHttpRequest객체생성
 			*/
 			
+			xhr = new XMLHttpRequest();
+			
 			
 			/*
 			2. 요청속성설정 
 			*/
 			
+			xhr.open('GET','02.ajaxRequest.jsp?id='+idStr); ///GET방식요청 -> 기본 비동기방식(동기방식으로 바꿀수있다.)
 				/*
-				응답이 도착했을때 실행되는 콜백함수등록(이벤트프로퍼티에함수등록)
+				응답이 도착했을때 실행되는 콜백함수등록(이벤트프로퍼티에함수등록) -> 등록후 응답온다.
 				*/
-			
+				xhr.onload=responseCallBack; 
+				//responseCallBack(); 로 해서는 안된다. -> undefined 뜬다. function의 결과값을 호출되는것.
 			/*
-			3.요청
+			3.요청 - 비동기는 응답이 오지않아도 끝남 (cf.동기요청은 반환)
 			*/
-		
+			xhr.send(null);
 			
 			
 	}	
@@ -39,6 +43,8 @@
 	응답이 도착했을때 실행되는 사용자정의 콜백함수
 	*/
 	function responseCallBack(){
+		let responseStr = xhr.responseText;
+		document.getElementById('msg').innerHTML=responseStr;
 	}
 </script>
 </head>

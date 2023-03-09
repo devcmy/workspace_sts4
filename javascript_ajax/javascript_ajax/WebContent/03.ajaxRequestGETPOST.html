@@ -18,28 +18,33 @@
 		1. XMLHttpRequest객체생성
 		*/
 		
+		xhr=new XMLHttpRequest();
+		
+		
 		/*
 		2. 요청속성설정 
 		*/
 		/*
 		2-1.open
 		*/
-		
+		xhr.open('post','03.ajaxRequestGETPOST.jsp',true); //안넣으면 디폴트가 true
 		/*
 		2-2.POST(GET) 방식일경우는 요청헤더설정
 		*/
-		
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");	
+		//type이 잘못설정되면 post방식으로 전송이 안된다.
 		/*
 		2-3.응답이 도착했을때 실행되는 콜백함수등록
 		*/
 		
+		xhr.onreadystatechange=postResponseCallBack;
 		
 		/*
 		3.요청 
 		 - xhr.send(요청바디);
 		 - 요청바디: param_name1=param_value1&param_name2=param_value2
 		*/
-		
+		xhr.send('id='+idStr);
 		
 	}
 	/**응답이 도착했을때 실행되는 콜백함수***/
@@ -56,11 +61,13 @@
 		console.log(xhr.readyState+':postResponseCallBack');
 		if(xhr.readyState==4){
 		  	/*데이타응답이완전히 이루어졌을때*/
-		    
+		    var responseStr = xhr.responseText;
+		  	document.getElementById('postResultSpan').innerHTML=responseStr;
 		    
 		}else{
-		    /*데이타응답이 오는중*/
-		   
+		    /*데이타응답이 오는중 4번상태 가 아닌 건 로딩중으로 뜨게*/
+		   document.getElementById('postResultSpan')
+		   .innerHTML="<img src='loading.gif' width='15px' height='15px'/>";
 		}
 	}
 	

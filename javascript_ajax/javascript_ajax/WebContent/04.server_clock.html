@@ -6,16 +6,20 @@
 
 <script type="text/javascript">
 	function requestServerTime(){
-	 
+	 	let xhr = new XMLHttpRequest();
+	 	xhr.open('GET','04.server_clock.jsp');
+	 	xhr.onload=function(){ //데이터 도착했을때 실행됨
+	 		document.getElementById('serverTimeSpan').innerHTML = 
+	 			xhr.responseText;
+	 	};
+	 	xhr.send(null);
 	}
-	function responseServerTime(){
-		
-	}
+	
 	window.onload=function(){
 		/*
 		1초마다 한번씩 requestServerTime함수실행
 		*/
-	  
+	  	window.setInterval(requestServerTime,1000);
 	};
 	
 </script>
