@@ -14,7 +14,7 @@
 		
 		keyword = keyword.toUpperCase();
 		
-		List result = new java.util.ArrayList(8);
+		List result = new java.util.ArrayList();
 		
 		for ( int i = 0 ; i < keywords.length ; i++ ) {
 			if (((String)keywords[i]).startsWith(keyword)) {
