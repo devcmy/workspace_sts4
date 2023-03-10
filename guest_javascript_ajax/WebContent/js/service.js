@@ -8,12 +8,11 @@ function guestService(method,url,params){
 	ajaxRequest(method,
 				url,
 				function(jsonResult){
-					returnJsonResult = jsonResult;
+					returnJsonResult=jsonResult;
 				},
 				params,
-				true);
-	
-	
+				false);
+				
 	return returnJsonResult;
 }
 function ajaxRequest(method,url,callbackFunction,params,async){
