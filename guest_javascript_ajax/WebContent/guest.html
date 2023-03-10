@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>방명록 관리</title>
+<link rel=stylesheet href="css/styles.css" type="text/css">
+<link rel=stylesheet href="css/guest.css" type="text/css">
+<link rel="icon" href="image/favicon-32x32.png">
+<style type="text/css" media="screen"></style>
+
+
+<script type="text/javascript">
+	/*
+	javascript api document
+	
+	https://developer.mozilla.org/ko/docs/Mozilla
+	 */
+	/*************template literal(es6)***************
+	var name='김경호';
+	var age=34;
+	
+	var html1=`저의 이름은 ${name}  이고 나이는 ${age} 살 입니다`;
+	console.log(html1);
+	
+	function func1(){
+	    return `저의 이름은 ${name}  이고 나이는 ${age} 살 입니다`;
+	}
+	var html2=`${func1()}`;
+	console.log(html2);
+	
+	var noArray=[1,2,3,4,5];
+	
+	function addOne(element){
+	    return element+1;
+	}
+	
+	var newNoArray=noArray.map(addOne);
+	
+	console.log("original array:"+noArray);
+	console.log("map array:"+newNoArray);
+	var newNoArrayStr = newNoArray.join(",");
+	console.log(".join('')==>"+newNoArrayStr);
+	 */
+</script>
+<script type="text/javascript">
+	
+</script>
+</head>
+
+<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
+	marginwidth=0 marginheight=0>
+	<!-- container start-->
+	<div id="container">
+		<!-- header start -->
+		<div id="header">
+			<!-- include_common_top.jsp start-->
+
+			<h1>
+				<a href="">방명록 JAVASCRIPT</a>
+			</h1>
+			<!-- include_common_top.jsp end-->
+		</div>
+		<!-- header end -->
+		<!-- navigation start-->
+		<div id="navigation">
+			<!-- include_common_left.jsp start-->
+
+			<p>
+				<strong>메 뉴</strong>
+			</p>
+			<ul class="guest_menus">
+				<li><a id="menu_guest_home" href="test.jsp">방명록홈</a></li>
+				<li><a id="menu_guest_list" href="#">방명록리스트</a></li>
+				<li><a id="menu_guest_write_form" href="#">방명록쓰기폼</a></li>
+
+			</ul>
+			<!-- include_common_left.jsp end-->
+		</div>
+		<!-- navigation end-->
+		<!-- wrapper start -->
+		<div id="wrapper">
+			<!-- content start -->
+			<!-- include_content start-->
+			<div id="content">
+			<img src='image/enter.png' width="540" height="350px" style="margin : 10px"/>
+			</div>
+			<!-- include_content end-->
+			<!-- content end -->
+		</div>
+		<!--wrapper end-->
+		<div id="footer">
+			<!-- include_common_bottom.jsp start-->
+			<p align="center">Copyright (&copy;) By Kimkyoungho.[김경호] All
+				rights reserved.</p>
+			<!-- include_common_bottom.jsp end-->
+		</div>
+	</div>
+	<!--container end-->
+	<!-- #####################template###################### -->
+	<!-- guest-main-template -->
+	<script id="guest-main-template" type="text/x-handlebars-template">
+	</script>
+	<!-- guest-list-template -->
+	<script id="guest-list-template" type="text/x-handlebars-template">
+	</script>
+	<!-- guest-view-template -->
+	<script id="guest-detail-template" type="text/x-handlebars-template">
+	</script>
+	<!--guest-write-form-template  -->
+	<script id="guest-write-form-template" type="text/x-handlebars-template">
+	</script>
+	<!-- guest-modify-form-template -->
+	<script id="guest-modify-form-template" type="text/x-handlebars-template">
+	</script>
+	
+	<script  src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+	<script  src="js/app.js" type="module"></script>
+</body>
+</html>
