@@ -68,6 +68,14 @@ document.addEventListener('click',function(e){
 		
 	}
 	
+	/***************guest_write_action***************/
+	/***************guest_modify_form_action*********/
+	/***************guest_modify_action**************/
+	
+	
+	
+	
+	
 });
 
 
