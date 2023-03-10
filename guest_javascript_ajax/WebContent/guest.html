@@ -15,18 +15,19 @@
 	
 	https://developer.mozilla.org/ko/docs/Mozilla
 	 */
-	/*************template literal(es6)***************
+	/*************template literal(es6)***************/
 	var name='김경호';
 	var age=34;
 	
-	var html1=`저의 이름은 ${name}  이고 나이는 ${age} 살 입니다`;
+	var html1=`저의 이름은 ${name}  이고 나이는 ${age} 살 입니다`; //back tick에 넣으면된다. -> 반환만 하면된다(코드만 기술하면됨)
+	
 	console.log(html1);
 	
 	function func1(){
 	    return `저의 이름은 ${name}  이고 나이는 ${age} 살 입니다`;
 	}
-	var html2=`${func1()}`;
-	console.log(html2);
+	var html2=`${func1()}`; //back tick에 function기술해서 반환하면 된다.
+	console.log(html2); //익명function의 return을 생략하고싶으면 화살표함수를 사용하면된다.
 	
 	var noArray=[1,2,3,4,5];
 	
@@ -34,18 +35,39 @@
 	    return element+1;
 	}
 	
-	var newNoArray=noArray.map(addOne);
+	var newNoArray=noArray.map(addOne); //map에 function을 넣으면 -> 처음에 실행된 결과의 데이터 반환 -> 다시 넣음(반복 => 누적)
+										//newNoArray 값 [2,3,4,5,6]
 	
 	console.log("original array:"+noArray);
 	console.log("map array:"+newNoArray);
-	var newNoArrayStr = newNoArray.join(",");
+	
+	var newNoArrayStr = newNoArray.join(","); //join function element들을 , 로 결합시켜서 string으로 반환해라
 	console.log(".join('')==>"+newNoArrayStr);
-	 */
-</script>
-<script type="text/javascript">
+	 
+	let nameArray = ["KIM","LEE","CHOI","SONG"];
+	
+	let nameHtmlArray = nameArray.map(function(name){ //function에 "NAME"이 들어옴 -> function 결과값을 반환(return) 받아서 nameHtmlArray에넣어줌
+		return `<li>${name}</li>`;
+	});
+	
+	let html = nameHtmlArray.join(""); //join안에 안넣으면 기본 ,로 분리함
+	console.log(html);
+	
+	
+	
+	
+	
 	
 </script>
+<script  defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+<script  src="js/app.js"  type="module" ></script>
 </head>
+
+
+
+
+
+
 
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
@@ -350,7 +372,9 @@
 		</table>
 	</script>
 	
-	<script  src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
-	<script  src="js/app.js" type="module"></script>
+	
+	
+	
+	
 </body>
 </html>
