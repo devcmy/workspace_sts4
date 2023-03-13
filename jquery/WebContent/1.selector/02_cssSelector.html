@@ -6,14 +6,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		let h2Text = $('h2').text(); //getter
+		$('#title').html(h2Text);
+		$('.contents').html('<u>jQuery는 오픈소스입니다.</u>'); //contents 안에 html형태로 넣는다.
+		//$('.contents').text('<u>jQuery는 오픈소스입니다.</u>'); //contents 안에 text로 넣으면 <u> : underline이 그대로 보인다.
+		//$('h2').text("<span>CSS 선택자</span>"); <span> 그대로 뜬다.
+		$('h2').html("<span>CSS 선택자</span>"); //html로 넣으면 parcing되서 들어감.
 		
+		$('h2').text(function(i,oldTextValue){ //text() 괄호안에 function을 넣을수 있다.
+			if(i%2==0){
+				return "h2변경";
+			}
 		
+			return oldTextValue;
+		});
 	});
 </script>
 </head>
 <body style="font-size: 15pt">
-	<h2>CSS 선택자를 이용한 HTML Element 검색1</h2>
-	<h2>CSS 선택자를 이용한 HTML Element 검색2</h2>
+	<h2>CSS 선택자를 이용한 HTML Element 검색1</h2> <!-- 0번째 -->
+	<h2>CSS 선택자를 이용한 HTML Element 검색2</h2> <!-- 1번째 -->
 	<div id="title" style="border: 2px solid red;">Hello jQuery~~</div>
 	<p class="contents"></p>
 	<p class="contents"></p>

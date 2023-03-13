@@ -18,9 +18,11 @@ div, span {
 <script type="text/javascript">
 	$(function(){
 		/***********직계자식 > **********/
-		
+		$('body > div').css('border','3px solid blue');	 //직계 선택이 안됨.
+		$('body > span').css('border','3px solid red');	 //직계 선택이 안됨.
 		/***********자손모두  **********/
-	
+		$('body div').css('background','pink');	 // 선택o
+		$('body span').css('background','orange'); // 선택o	
 		/*
 		$('body > *').css();
 		$('body  *').css();

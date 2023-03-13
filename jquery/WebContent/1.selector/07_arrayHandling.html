@@ -7,9 +7,16 @@
 
 <script type="text/javascript">
 $(function() {
+	let listElementArray = $('#nameList > li').get();
+   	let listElement0=$('#nameList > li').get(0);
+   	console.log("1. li element array"+listElementArray);
+   	console.log("2. li element array index 0 "+listElement0);  //표준객체는 jquery의 메소드를 호출할수 없다.
+   	//console.log("2. li element array index 0 "+listElement0.text()); //메소드를 호출해봣자 안나온다.  
+   	console.log("3. li element array index 0 : listElement0.firstChild.nodeValue --> "+listElement0.firstChild.nodeValue); //text로 못꺼냄
+   	console.log("3. li element array index 0 : $(listElement0).text() --> "+$(listElement0).text()); //표준객체 wrapping하면 text로 호출가능하다.
 	
-   
-	
+   	$('h2').text("Members of Groups are "+$('#nameList > li').get().length+" 명");
+   	
 });
 </script>
 </head>

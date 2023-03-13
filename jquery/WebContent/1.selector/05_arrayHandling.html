@@ -15,6 +15,14 @@
 				{'id':'guard5','name':'kim5','address':'경기솔'}
 		];
 		
+		$('h2').append(memberNameArray.length+' 명'); //text로 넣으면 값이 바뀌어버려서 기존값 뒤에 넣을려고 append 사용
+		$.each(memberNameArray,function(i, name){ //$.each() 함수는 배열 요소를 반복하며 각 요소에 대해 지정된 함수를 실행합니다.
+			$('#memberNameList').append('<li>'+name+'</li>');
+		});
+		
+		$.each(memberArray,function(i, member){  //$.each() 함수는 배열 요소를 반복하며 각 요소에 대해 지정된 함수를 실행합니다.
+			$('#memberList').append(`<li>[${member.id}]${member.name},${member.address}</li>`);
+		});
 		
 	});
 </script>

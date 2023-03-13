@@ -21,7 +21,15 @@
 			CSS 선택자를 이용한 HTML Element 검색3
 		</div>
 		<script type="text/javascript">
-			
+		
+		$('div').css('border','4px solid rgba(0,0,125,0.5)'); //a -> 투명도 (0~1사이)
+		$('div').css('background','green');
+		$('div').css('color','orange'); //setter -> 이름, 값 줘서 값을 바꿈
+		
+		let colorStr= $('div').css('color');
+		console.log('colorString:'+colorStr);
+		console.log('background String:'+$('div').css('background')); //getter 값 가져옴
+		
 		</script>
 	</body>
 </html>

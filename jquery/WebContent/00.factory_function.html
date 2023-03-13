@@ -41,6 +41,23 @@
 		console.log("$('h1').text()==>"+$('h1').text());
 		console.log("$('h2').text()==>"+$('h2').text());
 		
+		let nameArray=['kim','dim','sim','fim','aim'];
+		$.each(nameArray,function(i,element){ //array하고 function을 줄께
+			console.log(i+"-->"+element);
+		});
+		
+		let h3Element=document.querySelector('h3');   
+		/*
+		document.querySelector() 메소드로 선택된 element는 표준객체입니다. 이는 querySelector() 메소드가 표준 자바스크립트 API이기 때문입니다. 
+		만약 $(document.querySelector())와 같이 jQuery 객체로 변환하지 않았다면, 해당 element는 표준객체로 처리됩니다.
+		*/
+		console.log("h3Element 표준객체:"+h3Element);
+		// h3Element.text('ㄴㅇㄻㄴㄹㄷ'); => 에러남 => jQuery Object 객체로 만들면 됨.
+		let h3jQueryObject = $(h3Element);
+		console.log("h3jQueryObject jQery객체:"+h3jQueryObject);
+		h3jQueryObject.text('>>>>>>>>>>>>>>>> jQuery객체');
+		
+		
 	});
 	
 	
