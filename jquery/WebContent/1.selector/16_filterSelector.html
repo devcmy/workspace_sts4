@@ -39,7 +39,45 @@ td{
 		   순서가 바뀌면 스타일에 제대로 적용되지 않습니다~
 		※ LVHA-순서(:link — :visited — :hover — :active)
 
-*/
+*/	a{
+		text-decoration: none;
+		cursor: pointer;
+	}
+	a:link {
+		color:maroon;
+	}
+	a:visited{
+		color:red;	
+	}
+	
+	a:hover {
+		color:mediumslateblue;
+		background: cyan;
+		cursor: progress;
+	}
+	
+	a:active { 
+		background:white;
+		font-size:30pt;
+	}
+	h2::first-letter {
+	font-size:50pt;
+	color : indigo;
+	}
+	
+	
+	tr:first-child{
+		background:lime;
+	}
+
+	td:first-child{
+		background:orange;
+	}
+	tr:last-child{
+		font-size:30pt;
+		color:lightblue;
+	}
+	
 
 
 </style>
