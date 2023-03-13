@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <!-- 
-	#1. << js파일 다운로드후(local)사용 >>
+	#1. << js파일 다운로드후(local)사용 >> #1 or #2 중 사용
  -->
 <!--  
 <script type="text/javascript" src="jquery-3.6.0.js"></script>
@@ -34,20 +34,39 @@
 	 이것을 다양한방식으로다룰수 있게해준다.
 	 */
 	
+	 console.log("1."+window.$);
+	 console.log("2."+window.jQuery);
+	 
 	 $(function(){
-		   /*
-			DOM tree loading후 렌더링전에 호출
-			*/
+	   /*
+		DOM tree loading후 렌더링전에 호출
+		*/
+		let jQueryWrapper1=$('h1');
+		let jQueryWrapper2=$('h2');
+		console.log('3.jQueryWrapperObject1:'+jQueryWrapper1); //Object객체 로 나옴
+		console.log('4.jQueryWrapperObject2:'+jQueryWrapper2);
+		jQueryWrapper1.css('color','springgreen');
+		jQueryWrapper2.css('color','tomato');
+		
+		$('h3').text('오늘은 jQuery를 진짜로 사용합니다.');
+		$('h4').text('facotry function은 jQueryObject를 반환합니다');
+		$('h5').text('월요일 이네요 !!');
+		$('h6').text('귀여운 고양이');
+		
+		$('h3').css('color','royalblue').css('background','palegreen');
+		$('h4').css('color','navajowhite').css('background','lightyellow');
+		$('h5').css('color','lightcoral').css('background','lavenderblush');
+	
+		$('h6').text('이제 시작해봅시다').css('color','goldenrod');
+		console.log($('h1').text());
+		console.log($('h2').text());
+		console.log($('h3').text());
+		
 		
 		
 	 });
 	 
-	 window.onload=function(){
-		/*
-		DOM tree loading후 렌더링전에 호출
-		*/
-		
-	 }
+	 
 </script>
 </head>
 <body>
