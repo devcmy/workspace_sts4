@@ -34,9 +34,16 @@
 										});
 		*/ 
 		
-		$.each(filterMemberArray,function(index,member){
+		
+		$.each(filterMemberArray,(index,member)=>{
 			$('.selected2').append(`[${member.id}]${member.name},${member.address}`);
+		 }
+		)
+		/*
+		$.each(filterMemberArray,function(index,member){
+		$('.selected2').append(`[${member.id}]${member.name},${member.address}`);
 		});
+		*/
 		
 		
 	});

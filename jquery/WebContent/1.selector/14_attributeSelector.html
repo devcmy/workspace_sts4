@@ -9,6 +9,18 @@ div {
 	padding: 10px;
 	margin: 10px;
 }
+	/*
+	[target]{
+		color:green;
+	}
+	a[target='_blank']{
+		border:4px solid gold;
+	}
+	
+	a[href !='http://www.itwill.com']{
+		background-color: pink;
+	}
+	*/
 
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -17,13 +29,15 @@ div {
 		/*
 		 a tag target 속성이 존재하는엘레멘트 
 		*/
+		$('a[target]').css('border','3px solid green');
 		/*
 		 a tag href 속성의값이 http://www.itwill.com 인 엘레멘트 
 		*/
+		$("a[href='http://www.itwill.com']").css('background','pink');
 		/*
 		 a tag href 속성의값이 http://www.itwill.com 와 일치하지않는 엘레멘트 
 		*/
-		
+		$("a[href!='http://www.itwill.com']").css('background','springgreen');
 	});
 </script>
 </head>
