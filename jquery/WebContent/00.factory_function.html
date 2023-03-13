@@ -15,12 +15,32 @@
 		    div element jQuery wrapper객체생성
 	*/
 	
-	$(function(){
+	console.log("1."+window.jQuery);
+	console.log("2."+window.$);
+	
+	
+	
+/*	$(function(){
 	    console.log('------DOM tree로딩직후 호출되는코드------');	
-	});
+	}); */
 	
 	window.onload=function(){
-		console.log('------DOM tree로딩직후 호출되는코드------');	
+		console.log('------DOM tree로딩직후 호출되는코드------');
+		let jQueryWrapperObject1= jQuery('h1');
+		let jQueryWrapperObject2= $('h2');
+		
+		console.log("3. factory function return하는 객체 : "+jQueryWrapperObject1);
+		console.log("4. factory function return하는 객체 : "+jQueryWrapperObject2);
+		
+		jQueryWrapperObject1.css('color','skyblue'); //jQuery라이브러리에서 제공하는 function들 중 하나
+		jQueryWrapperObject2.css('background','pink');
+		jQueryWrapperObject1.text('오늘은 jQuery를 공부합니다.')
+		jQueryWrapperObject2.text('factory function은 중요한 내용입니다.')
+		
+		//실제 jQuery 사용방식
+		$('h3').css('background','aquamarine').text('jQuery Chaining Coding') //jQuery chaining code;
+		$('h4').text('힘내세요~~~~').css('border','10px dotted orange'); // 다시반환하는것에 css적용하려고 chaining code 작성함
+		
 	};
 	
 </script>
@@ -30,6 +50,7 @@
 <h1>jQuery,$[factory function]</h1>
 <h1>jQuery,$[factory function]</h1>
 <hr/>
+<h2>jQuery,$[factory function]</h2>
 <h2>jQuery,$[factory function]</h2>
 <h3>jQuery,$[factory function]</h3>
 <h3>jQuery,$[factory function]</h3>
