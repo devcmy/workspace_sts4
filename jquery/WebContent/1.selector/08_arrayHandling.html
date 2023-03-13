@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,10 +18,25 @@
 		$.grep();
 		*/
 		
+		let filterNameArray = $.grep(memberNameArray,(name, index)=>name.startsWith('k')); //익명함수 -> 화살표함수
+		// let filterNameArray = $.grep(memberNameArray,(name, index){ return name.startsWith('k')}); 원래 익명함수를 윗줄의 화살표함수로 바꿧음.
+
+		
+		$.each(filterNameArray,function(i, name){
+			$('.selected1').append(name+" ");
+		});
 		
 		
+		let filterMemberArray = $.grep(memberArray,(member,index)=>member.address=='경기미');
 		
+	/*	let filterMemberArray = $.grep(memberArray,function(member,index){
+						return member.address=='경기미';
+										});
+		*/ 
 		
+		$.each(filterMemberArray,function(index,member){
+			$('.selected2').append(`[${member.id}]${member.name},${member.address}`);
+		});
 		
 		
 	});
