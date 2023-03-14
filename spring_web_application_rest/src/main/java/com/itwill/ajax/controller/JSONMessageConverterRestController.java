@@ -13,13 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ajax.domain.News;
 
+import io.swagger.annotations.ApiOperation;
+
 //읽기만 하는 예제
 
 
 @RestController //@responseBODY안써도 된다.
 public class JSONMessageConverterRestController {
 
-	
+	@ApiOperation(value = "뉴스리스트")
 	@GetMapping(value="/news",produces = "application/json;charset=UTF-8")
 	public List<News> newsTitlesListJson() {
 		return this.getNewsList();
@@ -53,7 +55,7 @@ public class JSONMessageConverterRestController {
 	 * 										}
 	 * 
 	 */
-
+	
 	@GetMapping(value="/map_news", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> newsTitlesMapJson() {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
