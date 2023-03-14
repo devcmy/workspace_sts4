@@ -67,7 +67,19 @@ td {
 	</div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-	
+	$('td').css('border','3px dotted orangered');
+	$('td:first').css('color','seagreen');
+	$('td:first-child').css('color','yellowgreen');
+	$('td:last').css('color','green');
+	$('td:last-child').css('color','green');
+	$('td:nth-child(2)').css('background','violet');
+	/*
+	#account > a
+	#account > div > a
+	#goodsItem_product_Z01002 > div:nth-child(2) > a:nth-child(5)
+	#shop_wrap > div.shop_header > h1 > a
+	body > div > table > tbody > tr:nth-child(2) > td:nth-child(5)
+	*/
 </script>	
 </body>
 </html>
