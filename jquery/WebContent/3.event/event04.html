@@ -17,18 +17,28 @@ $(function() {
 	/*
 	현재DOM Tree에있는 엘레멘트만 이벤트처리
 	*/
-	
-	
+	/*  -> 동적추가상태에서는 안됨 -> on을 써야함.
+	$('li').click(function(e){
+		alert($(e.target).text()); //li의 값(td의 값도) 바로 text()해야뜬다.
+	});
+	*/
 	
 	/*
-	현재DOM Tree의 ul 에 자식으로 동적으로추가되는 li 엘레멘트도 이벤트처리
+	현재DOM Tree의 ul 에 자식으로 동적으로추가(자식에 추가되는건 부모가 와야함)되는 li 엘레멘트도 이벤트처리
+	동적으로 추가되는것들에도 이벤트 처리 가능
 	*/
+	//$(Document).on( -> document 하위에 다 추가가능
+	$('ul').on('click','li',function(e){
+		alert($(e.target).text());
+	});
 	
 	
 	/*
 	동적노드추가버튼 이벤트처리
 	*/
-	
+	$('#btnAdd').click(function(){
+		$('ul').append('<li>list item '+$('li').length+'</li>');
+	})
 	
 	
 });

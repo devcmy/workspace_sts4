@@ -31,7 +31,19 @@ td {
 			3.submit default중지
 			*/
 			
+			$('#f').on('submit',function(e){ // 동적으로 온거 처리안됨 -> 처리하려면 $(document).on('submit','#f')
 			
+			});
+			
+			$('#f').submit(function(e){
+				alert('submit-->');
+				let parameter1 = $(e.target).serialize();             //$(e.target) = $('#f') 같은것
+				let parameter2 = $('#f').serialize();
+				console.log('parameter1:'+parameter1);
+				console.log('parameter2:'+parameter2);
+				
+				e.preventDefault();
+			});
 			
 			/*
 			[

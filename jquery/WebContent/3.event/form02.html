@@ -24,29 +24,50 @@ td {
 <script type="text/javascript">
 	$(function() {
 			/*
+			일반적인 element 속성에 접근
+			*/
+			//attribute set
+			$('#p_image').attr('src','icon1.png');
+			$('#p_image').attr('width','30px');
+			$('#p_image').attr('height','30px');
+			//attribute get
+			console.log($('#p_image').attr('src'));
+			console.log($('#p_image').attr('width'));
+			console.log($('#p_image').attr('height'));
+			
+			
+		
+			/*
 			form태그안에 있는 input element 접근
 			 	- 입력 엘레멘트의 값을 접근할때는  .val() 을사용
-		      	- .val() 은 DOM트리생성이후에 동적으로변하는 
+		      	- .val() 은 DOM트리생성이후에 "동적"으로변하는 
 		           사용자입력데이타를 읽을수있다
 		     */
 			console.log('----------dom tree loading 후에 form element value get -------');
-			console.log("1.$('#id').attr('value')		  [x]:");
-			console.log("1.$('#id').val()        		  [o]:");
-			console.log("2.$('#name').val()      		  [o]:");
-			console.log("3.$('#alias').val()     		  [o]:");
-			console.log("4.$('#job option:selected').val()[o]:");
+			console.log("1.$('#id').attr('value')		  [x]:"+$('#id').attr('value')); //attr은 처음값만 얻음. 그래서 쓰지마라
+			console.log("1.$('#id').val()        		  [o]:"+$('#id').val());
+			console.log("2.$('#name').val()      		  [o]:"+$('#name').val());
+			console.log("3.$('#alias').val()     		  [o]:"+$('#alias').val());
+			console.log("4.$('#job option:selected').val()[o]:"+$('#job option:selected').val());
 			
 			console.log('----------dom tree loading 후에 form element value set -------');
+			$('#id').val('yyyy');
+			$('#name').val('최민영');
+			$('alias').val('secret');
+			$('#job').val('프리렌서'); //틀리면 선택이 안됨
+			//$('#job > option')[2].selected=true;
 			
 			
 			
-			$('#f').submit(function(e){
+			
+			
+			$('#f').submit(function(e){ //사용자가 변경한 후 작업
 			   	console.log('----------submit 시에 form element value get -------');
-			   	console.log("1.$('#id').attr('value')		  [x]:");
-				console.log("1.$('#id').val()        		  [o]:");
-				console.log("2.$('#name').val()      		  [o]:");
-				console.log("3.$('#alias').val()     		  [o]:");
-				console.log("4.$('#job option:selected').val()[o]:");
+			   	console.log("1.$('#id').attr('value')		  [x]:"+$('#id').attr('value')); //submit할때, 동적으로 안되니 쓰지마라[x] -> 기존값 그대로 나옴
+				console.log("1.$('#id').val()        		  [o]:"+$('#id').val());
+				console.log("2.$('#name').val()      		  [o]:"+$('#name').val());
+				console.log("3.$('#alias').val()     		  [o]:"+$('#alias').val());
+				console.log("4.$('#job option:selected').val()[o]:"+$('#job option:selected').val());
 				/*
 				폼을이용한 서버로의 jquery ajax요청
 				1.parameter생성
@@ -54,11 +75,14 @@ td {
 				3.jqury ajax요청
 				4.submit default중지
 				*/
-				var parameter="";
+				var parameter=$(e.target).serialize();
+				var jsonData=$(e.target).serializeArray();
 				console.log(">>>>>>요청파라메타생성:"+parameter)
+				console.log(">>>>>>요청JSON Data생성:",jsonData)
 				//$.ajax();
 				console.log(">>>>>>ajax요청")
 			    console.log(">>>>>>페이지요청중지")
+			    e.preventDefault();
 			});
 			
 		
