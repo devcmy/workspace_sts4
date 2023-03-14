@@ -17,10 +17,42 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	
+	let clickCount=0;
+	let enterCount=0;
+	let leaveCount=0;
 	
 	$(function(){
+		/*
+		$('h2').click(function(e){ //1. handler이 function을 넣고, 2.이벤트객체인 e를 준다. 너무많을떄는 e.target을 줘야 수많은것들중 선택이 가능
+			$(e.target).html('jQuery에서 제공하는 event 핸들링 메소드 : '+ ++clickCount)                    // 표준객체니까 wrapping해야한다.
+		});
 		
+		$('#mouseArea').mouseenter(function(e){
+			$('#spResult').html(`mouse enter count:${++enterCount}<br>
+								 mouse leave count:${leaveCount}<br>
+								`);
+		});
+		$('#mouseArea').mouseleave(function(e){
+			$('#spResult').html(`mouse enter count:${enterCount}<br>
+								 mouse leave count:${++leaveCount}<br>
+								`);
+		});
+		*/
+		//범용적인 method -> ajax에서 동적로딩 일어나도 처리가 된다. (동적으로 일어나는것도 처리해줌)
+		$('h2').on('click',function(e){
+			$(e.target).html('jQuery에서 제공하는 event ! 핸들링 메소드 ! : '+ ++clickCount) 
+		});
+		$('#mouseArea').on('mouseenter mouseleave',function(e){   //하나에 기술
+			if(e.type=='mouseenter'){
+				enterCount++;
+				
+			}else if (e.type == 'mouseleave') {
+				leaveCount++;
+			}
+			$('#spResult').html(`mouse enter count:${enterCount}<br>
+					 			mouse leave count:${leaveCount}`);
+					
+		});
 		
 		
 	});
