@@ -29,6 +29,7 @@ td {
 	$(function() {
 	
 		/*
+		j쿼리안쓰면 아래처럼 기술해야한다.
 		var tdElementNodeList = document.getElementsByTagName("td")
 		for (var i = 0; i < tdElementNodeList.length; i++) {
 			tdElementNodeList[i].addEventListener("click", function(e) {
@@ -40,7 +41,16 @@ td {
 			});
 		}
 		*/
+		//click을 등록해주고, function을 등록해줌(for문을 안돌려도 된다.)
 		
+		$('td').click(function(e){
+				console.log("event[표준객체]:"+e);
+				console.log("e.target[표준객체]:"+e.target);
+				console.log(e.target.firstChild.nodeValue);
+				console.log("this   :"+this); //e.target = this(가아끔 다른경우도 발생)
+				console.log(this.firstChild.nodeValue);
+				console.log($(e.target).text());
+		})
 		
 		
 		
