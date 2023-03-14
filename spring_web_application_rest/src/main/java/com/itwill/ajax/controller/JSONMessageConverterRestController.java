@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ajax.domain.News;
 
+//읽기만 하는 예제
+
+
 @RestController //@responseBODY안써도 된다.
 public class JSONMessageConverterRestController {
 
