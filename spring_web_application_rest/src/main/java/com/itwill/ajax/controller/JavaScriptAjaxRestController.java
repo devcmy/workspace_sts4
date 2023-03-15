@@ -22,7 +22,7 @@ public class JavaScriptAjaxRestController {
 	 * << @ResponseBody >> 
 	 * - ViewResolver-->View-->foward jsp 를 사용하지않는다 -
 	 * 	MessageConverter(text,xml,json)가 클라이언트로 응답한다. 
-	 * - @RestController 어노테이션을 사용하면 생략가능하다.
+	 * - @RestController 어노테이션을 사용하면 @ResponseBody를 생략가능하다.
 	 */
 	
 	//javascript_ajax 의 02.ajaxRequest.jsp와 02.ajaxRequest.HTML 합본 후 편집
