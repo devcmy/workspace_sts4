@@ -5,9 +5,9 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 <script type="text/javascript">
-	
+	$(function(){ //function에 등록하거나, 하단에 <Script>에 기술
 		
-	
+	});	
 	
 	
 	
@@ -19,5 +19,27 @@
 	아이디[POST]:<input  type="text" name="id" id="id"  >
 	<span id="postResultSpan"></span>
 </form>
+<script type="text/javascript">
+	$('#id').keyup(function(e){
+		console.log('>>>>>>>>>');
+		if($(e.target).val().trim()==''){
+			return;
+		}
+		$.ajax({
+			url:'03.ajaxRequestGETPOST',
+			method:'POST',
+			data:$('#postForm').serialize(),
+			beforeSend:function(){
+				$('#postResultSpan').html("loading...");
+			},
+			success:function(responseData){
+				$('#postResultSpan').html(responseData.trim());
+			},
+			error:function(){
+				alert('ajax error!!');
+			}
+		});
+	});
+</script>
 </body>
 </html>

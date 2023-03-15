@@ -22,8 +22,15 @@
 				method:'GET',
 				data:param,
 				dataType:'text', //응답의 data TYPE
-				success:function(responseData){ //성공햇을때, 익명function 기술
-					console.log(responseData);
+				beforeSend:function(){
+					$('#msg').html("<img src='loading.gif' width='20px' height='20px'>");
+				},
+				success:function(responseData,textStatus,xhr){ //성공햇을때, 익명function 기술
+					if(responseData.trim()=='사용가능'){
+					$('#msg').html(responseData.trim()).css('color','blue'); //json에서 오는 data는 trim을 해주는것이 좋다
+					} else{
+					$('#msg').html(responseData.trim()).css('color','red'); //json에서 오는 data는 trim을 해주는것이 좋다
+					}
 				}
 			})									//jquery의 global function
 		}); //event시
@@ -85,7 +92,7 @@
 			제한 시간 (밀리초)을 설정합니다. 
 			$. ajaxSetup 에서 지정한 값을 통신에 따라 개별적으로 덮어쓸 수 있습니다.
 		
-		* type : GET, POST, DELETE, PUT
+		* method : GET, POST, DELETE, PUT
 		
 			HTTP 통신의 종류를 설정합니다. 기본값은 "GET"입니다.
 			RESTful에 "PUT"또는 "DELETE"를 지정할 수 있지만 모든 브라우저가 지원하는 것은 아니기 때문에주의가 필요

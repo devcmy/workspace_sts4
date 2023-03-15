@@ -24,49 +24,74 @@ public class JavaScriptAjaxRestController {
 	 * - @RestController 어노테이션을 사용하면
 	 *   생략가능하다.
 	 */
-	@GetMapping("/02.ajaxRequest")
-	public String ajaxRequest(@RequestParam(name = "id",defaultValue = "") String id) throws Exception {
-		String msg="";
-		if(id.startsWith("guard")){
-			msg="사용가능";
-		}else{
-			msg="사용불가능";
+	@RequestMapping(value = "02.ajaxRequest", produces = "text/plain;charset=UTF-8")
+	public String ajaxRequest(@RequestParam(required = true, defaultValue = "") String id) throws Exception {
+		String msg = "";
+		if (id.startsWith("guard")) {
+			msg = "사용가능";
+		} else {
+			msg = "사용불가능";
 		}
+		Thread.sleep(1000);
 		return msg;
 	}
 
-	@GetMapping(value = "03.ajaxRequestGETPOST")
-	public String ajaxRequestGETPOST() throws Exception {
-		return "";
+	@RequestMapping(value = "03.ajaxRequestGETPOST", produces = "text/plain;charset=UTF-8")
+	public String ajaxRequestGETPOST(@RequestParam(required = true, defaultValue = "") String id) throws Exception {
+		String msg = "";
+		if (id.startsWith("guard")) {
+			msg = "사용가능";
+		} else {
+			msg = "사용불가능";
+		}
+		Thread.sleep(1000);
+		return msg;
 	}
 
-	@GetMapping("04.server_clock")
+	@RequestMapping(value = "04.server_clock", produces = "text/plain;charset=UTF-8")
 	public String server_clock() {
 		return new Date().toLocaleString();
 	}
 
-	
+	@RequestMapping(value = "/05.newsTitlesHTML", produces = "text/plain;charset=UTF-8")
 	public String newsTitlesHTML() {
-		return "";
+		List<News> newsList = this.getNewsList();
+		StringBuffer sb = new StringBuffer();
+		sb.append("<ul>");
+		for (int i = 0; i < newsList.size(); i++) {
+			News news = newsList.get(i);
+			sb.append("<li>" + news.getTitle() + "[" + news.getCompany() + "-" + news.getDate() + "][HTML]</li>");
+		}
+		sb.append("</ul>");
+		return sb.toString();
 	}
 
-	
+	@GetMapping(value = "08.newsTitlesJSON", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> newsTitlesJSON() {
-		
-		return null;
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("code", 1);
+		resultMap.put("msg", "성공");
+		resultMap.put("url", "guest_main");
+		resultMap.put("data", this.getNewsList());
+		return resultMap;
 	}
-
 	/*
 	{
 			"count":2,
 			"data":["자바","자라","자바라"]
 	}
 	 */
+	@GetMapping(value = "suggest")
 	public Map<String,Object> suggest(@RequestParam(value = "keyword",defaultValue = "") String keyword ) {
-		
-		return null;
+		List<String> keywordList = this.search(keyword);
+		Map<String,Object> resultMap=new HashMap<String,Object>();
+		resultMap.put("count", keywordList.size());
+		resultMap.put("data", keywordList);
+		return resultMap;
 	}
 
+	
+	
 	public List<News> getNewsList() {
 		/*
 		 * for(int i=0;i<300000;i++){ System.out.println(""); }

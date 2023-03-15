@@ -6,7 +6,7 @@ function ajaxRequest(method,url,params,callbackFunction){
 	url = (method=='GET'&& params!=null) ? url+"?"+params : url; 
 	
 	xhr.open(method,url,true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //form의 data를 파라메타로 전송
 	xhr.onload=function(){
 		callbackFunction(xhr);
 	};
