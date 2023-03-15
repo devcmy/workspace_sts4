@@ -58,9 +58,11 @@ public class JavaScriptAjaxRestController {
 		List<News> newsList = this.getNewsList();
 		StringBuffer sb = new StringBuffer();
 		sb.append("<ul>");
-		for (int i = 0; i < newsList.size(); i++) {
-			News news = newsList.get(i);
-			sb.append("<li>" + news.getTitle() + "[" + news.getCompany() + "-" + news.getDate() + "][HTML]</li>");
+		int count = (int)(Math.random()*newsList.size())+1;
+		
+		for(int i=0;i<count;i++){
+			News news=newsList.get(i);
+			sb.append("<li>"+news.getTitle()+"["+news.getCompany()+"-"+news.getDate()+"][HTML]</li>");
 		}
 		sb.append("</ul>");
 		return sb.toString();

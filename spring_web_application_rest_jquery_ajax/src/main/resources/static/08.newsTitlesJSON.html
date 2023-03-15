@@ -82,7 +82,27 @@
 		</ul>
 		 */
 			
-		
+		 $(function(){
+				setInterval(function(){
+					$.ajax({
+						url:'08.newsTitlesJSON',
+						dataType:'json',
+						success:function(responseJsonObject){
+							let html=`<ul>`;
+							$.each(responseJsonObject.data,function(i,news){
+								html+=`<li>${news.title}[${news.company}-${news.date}]</li>`;
+							});
+							html+=`</ul>`;
+							
+							$('#newsDiv').html(html);
+							
+						}
+					});
+				},1000);
+				
+			});
+		 
+		 
 	
 </script>
 </head>
