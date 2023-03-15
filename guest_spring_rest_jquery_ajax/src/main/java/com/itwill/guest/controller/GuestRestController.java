@@ -44,12 +44,24 @@ public class GuestRestController {
 		return resultMap;
 		
 	}
+	
+	//value의 {} 과 int guest_no가 일치해야한다.
 	@GetMapping(value = "/guest/{guest_no}", produces="application/json;charset=UTF-8")
-	public Map<String, Object> guest_detail(@PathVariable int guest_no )throws Exception{
+	public Map<String, Object> guest_detail(@PathVariable(value = "guest_no") int guest_no )throws Exception{
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		int code=1;
 		String msg="성공";
 		List<Guest> data = new ArrayList<Guest>();
+		
+		Guest guest = guestService.selectByNo(guest_no);
+		
+		if(guest!=null) {
+			data.add(guest); //비어있는 data에 한개 추가
+		}else {
+			code=2;
+			msg="게시물이 존재하지 않습니다.";
+		}
+		
 		
 		resultMap.put("code", code);
 		resultMap.put("msg", msg);
