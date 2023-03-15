@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.guest.Guest;
@@ -43,8 +44,8 @@ public class GuestRestController {
 		return resultMap;
 		
 	}
-	
-	public Map<String, Object> guest_detail()throws Exception{
+	@GetMapping(value = "/guest/{guest_no}", produces="application/json;charset=UTF-8")
+	public Map<String, Object> guest_detail(@PathVariable int guest_no )throws Exception{
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		int code=1;
 		String msg="성공";
